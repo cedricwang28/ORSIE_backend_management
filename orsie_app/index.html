@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- add the code below to the content of the meta viewport tag to disable address bar hiding and default pinch zoom-->
+	<!-- user-scalable=no -->
+	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>ORSIE Research Day</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+	<main id="container">
+		<header>
+			<div id="userNameBar">Signed in as Firstname Lastname</div>
+			<!-- add the actual logo -->
+			<div id="userInitials">JZ</div>
+			<marquee id="newsTicker" direction="left">
+				<!-- placeholder text for demo/starting purposes -->
+				Welcome to Research Day 2020!
+			</marquee>
+			<!-- <h1>Research Day 2020</h1>
+			<img id="profileIcon" src="./images/profile3.svg" alt="profile">
+			-->
+		</header>
+		<section id="events-page">
+			<nav>
+				<h2 id="eventsNav"  class="navItem highlight"><span>Events</span></h2>
+				<div class="navItem">|</div>
+				<h2 id="scheduleNav"  class="navItem"><span>Schedule</span></h2>
+			</nav>
+			<div id="current-events-container">
+				<!-- will be dynamically generated from json data -->
+			</div>
+			<div id="full-schedule-container">
+				<!-- will be dynamically generated from json data -->
+			</div>
+		</section>
+		<!-- the fader div enables the ability to add a darkening effect for page transitions -->
+		<div id="fader"></div>
+		<section id="map-page">
+			<!-- the current map div has a placeholder background image of the prototype map -->
+			<div id="map">
+				<object id="floorMap" data="./images/filledMap.svg" type="image/svg+xml"></object>
+				<!-- <object id="floorMap" data="./images/map_resized.svg" type="image/svg+xml"></object> -->
+			</div>
+		</section>
+		<aside id="map-tab">
+			<div id="map-button">
+				<img src="./images/map-icon-white.png" alt="Map Button" />
+			</div>
+		</aside>
+		<div id="events-button">
+			
+			<!-- add the below image tag when events button asset created -->
+			<img src="./images/goBack.svg" alt="Back to Events" />
+		</div>
+		<section id="search-page">
+			<div id="content-box">
+				<img src="./images/orsie-logo-new.svg" />
+				<h1>ResearchDay Check In</h1>
+				<h2 id="instruction">Please search and select your name from the list to check in.</h2>
+				<form id="search-form" method="POST">
+					<input type="text" name="search-text" id="search-input" placeholder="Enter your name or email" />
+					<input type="hidden" name="event_name" id="event_name" value="ORSIE Research Day 2020" />
+					<button type="submit" id="submit">
+						<img src="./images/search-icon.png" alt="Search Button" />
+					</button>
+				</form>
+				<div id="search-results">
+					<!-- Search results will go here -->
+				</div>
+				<input type="email" name="email" id="confirm-email-input" placeholder="Confirm your email" disabled="1" required />
+				<div id="message-box"></div>
+				<button id="sign-in-button" disabled="1">Check In</button>
+			</div>
+		</section>
+	</main>
+
+	<!-- GSAP -->
+	<script src="./gsap.min.js"></script>
+
+	<!-- APP SCRIPTS -->
+	<script src="./main.js"></script>
+
+    <!-- GET DATA SCRIPT -->
+	<script src="./getData.js"></script>
+
+	<!-- MAP SCRIPT -->
+	<script src="./map.js"></script>
+
+	<!-- TOUCH INPUTS SCRIPT -->
+	<script src="./touchInputs.js"></script>
+
+	<!-- SEARCH SCRIPT -->
+	<script src="./search.js"></script>
+
+	<!-- POP UPS SCRIPT -->
+	<script src="./popUps.js"></script>
+
+	<!-- SCHEDULE SCRIPT -->
+	<script src="./schedule.js"></script>
+
+	<!-- NAV SCRIPT -->
+	<script src="./nav.js"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Durham Event Registration">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ORSIE Research Day Registration</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+        <!-- splash page -->
+        <section id="splash" class="page">
+            <!-- dc logo -->
+            <h2>Research Day 2020</h2>
+            <img id="splash-dc-logo" src="./images/dc-logo.svg" alt="Durham College Logo">
+        </section>
+
+        <!-- main form -->
+
+        <section id="registration-page" class="page">
+            <!-- ORSIE logo -->
+            <object id="registration-form-logo" data="./images/orsie-logo.svg" type="image/svg+xml"></object>
+            <!-- Event title -->
+            <h4 id="registration-event" class="reveal">Research Day 2020</h4>
+            <p id="registration-date" class="reveal">Thursday April 2, 2020 <br>4:00PM - 6:30PM <br>
+            Centre for Collaborative Education,<br>Durham College, Oshawa Campus</p>
+            <!-- Registration Instructions -->
+            <p id="registration-form-instruction" class="reveal">Enter your information below to register</p>
+                <!-- 
+<p id="registration-form-instruction" class="reveal">Enter your information below to register for the
+                ORSIE's Research Day 2020.</p>
+ -->
+            <!-- Registration form -->
+            <form id="registration-form" method="post" class="reveal">
+                <input type="text" name="name_first" placeholder="*First Name" class="reveal" required>
+                <input type="text" name="name_last" placeholder="*Last Name" class="reveal" required>
+                <input type="email" name="email" placeholder="*Email Address" class="reveal" required>
+                <input type="text" name="organization_name" placeholder="Company/School" class="reveal">
+                <input type="text" name="city" placeholder="City/Town" class="reveal">
+                <input  type="text" list="list-province" name="province" placeholder="Province" class="reveal">
+                <datalist id="list-province">
+                    <option>Alberta</option>
+                    <option>British Columbia</option>
+                    <option>Manitoba</option>
+                    <option>New Brunswick</option>
+                    <option>Newfoundland and Labrador</option>
+                    <option>Nova Scotia</option>
+                    <option>Ontario</option>
+                    <option>Prince Edwards Island</option>
+                    <option>Quebec</option>
+                    <option>Saskatchewan</option>
+                    <option>Northwest Territories</option>
+                    <option>Nunavut</option>
+                    <option>Yukon</option>
+                </datalist>
+                <p id="type_selector" class="reveal">
+                    <span>* You are a ...</span>
+                    <span>
+                        <input type="radio" name="a_type" id="type_faculty" value="Faculty" required>
+                        <label for="type_faculty">Faculty</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="a_type" id="type_staff" value="Staff" required>
+                        <label for="type_staff">Staff</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="a_type" id="type_student" value="Student" required>
+                        <label for="type_student">Student</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="a_type" id="type_guest" value="Guest" required>
+                        <label for="type_guest">Guest</label>
+                    </span>
+                </p>
+                <input type="hidden" name="event_name" value="ORSIE Research Day 2020" />
+                <p class="reveal" id="formNote">* Required</p>
+                <label id="consent_check">
+                    <span>
+                        <input type="checkbox" name="consent" id="consent" value="Yes"/>
+                        <span id="checkmark"></span>
+                        <label for="consent">I consent to Durham College sending me information and promotional electronic messages.</label>
+                    </span>
+                </label>
+                <button type="submit" class="reveal" id="submit">
+                    <span id="spinner"></span>
+                    <span id="register">Register</span>
+                </button>
+            </form>
+        </section>
+    </main>
+    </div>
+
+
+
+    <!-- GSAP Link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/ScrollToPlugin.min.js"></script>
+
+    <!-- js file -->
+    <script src="main.js"></script>
+    <script>
+        var data = {name: "wtwtw"};
+
+        fetch("http://localhost:5000/api/os", {
+        
+                method: "post",
+                body: JSON.stringify(data), 
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            })
+            .then(response => response.json())
+            .then(message => {
+                console.log(message);
+            });
+    
+    </script>
+</body>
+
+</html>

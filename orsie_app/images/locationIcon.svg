@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 61">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f3a83c;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="NewScheduleLayouts">
+      <g id="singleEvent-schedule">
+        <path class="cls-1" d="M22,0C9.85,0,0,8.89,0,24.57S22,61,22,61,44,39.4,44,23.72,34.15,0,22,0Zm0,36A13,13,0,1,1,35,23,13,13,0,0,1,22,36Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

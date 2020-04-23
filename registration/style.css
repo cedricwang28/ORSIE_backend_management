@@ -1,0 +1,391 @@
+/* STYLES HERE */
+
+/* color declarations */
+/*
+* According to DC styling:
+* Black is used for text only.
+* White is the preferred background for DC materials. In other instances, white becomes the inverted colour on a DC Green background.
+* These colours are used to enhance our primary colour and create differentiation and emphasis.
+* We recommend using Samac Orange for a call to action.
+* Simcoe Grey is used to break up large portions of white, or for subtle elements to enhance the design and message.
+* Cadbury Brown is used in bar graphic elements only.
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --dc-green: #0b8261;
+    --dc-yellowgreen: #45A046;
+    --dc-brown: #522C1B;
+    --dc-grey: #455560;
+    --dc-orange: #D33222;
+}
+
+/* font imports */
+@font-face {
+    /* should change font-family name to name of use (ex. paragraph, header) */
+    font-family: Oswald;
+    src: url(./fonts/Oswald/static/Oswald-Regular.ttf);
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(./fonts/Lato/Lato-Regular.ttf);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.5em;
+    background-image: url(./images/bg.svg);
+    background-attachment: fixed;
+    /* overflow: scroll; */
+}
+
+p {
+    font-family: "Lato", sans-serif;
+    font-size: 0.9rem;
+}
+
+.container {
+    /* position: fixed; */
+    padding: 2rem 0;
+    /* height: 100vh; */
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.3);
+    /* overflow: scroll; */
+}
+
+/* splash styles */
+#splash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#splash h2 {
+    display: none;
+}
+
+#splash img {
+    width: 20rem;
+}
+
+/* registration form page styles */
+#registration-page {
+    opacity: 0;
+    width: 85%;
+    margin: auto auto;
+    padding: 2rem 2rem;
+    text-align: center;
+    border: 5px solid var(--dc-green);
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    transition: 0.5s;
+}
+
+#registration-form-logo {
+    margin: 0.5rem auto;
+    width: 90%;
+}
+
+#registration-event {
+    margin: 0.5rem;
+    color: var(--dc-orange);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    font-family: 'Lato', sans-serif;
+}
+
+#registration-date {
+    margin: 0.5rem;
+    color: var(--dc-orange);
+    /* font-size: 1.25rem; */
+    font-family: 'Lato', sans-serif;
+}
+
+#registration-form-instruction {
+    margin: 1rem 1rem;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    color: var(--dc-green);
+}
+
+#registration-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: 0.5s;
+}
+
+input,
+button {
+    width: 95%;
+    margin: 0.5rem auto;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid var(--dc-brown);
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    color: #383838;
+    transition: 0.1s;
+}
+
+::placeholder::before {
+    opacity: 0.7;
+}
+
+input:hover {
+    cursor: text;
+}
+
+input:focus {
+    border-bottom: 2px solid var(--dc-yellowgreen);
+    outline: none;
+}
+
+#type_selector {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin: 0.5rem auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    border: 2px solid transparent;
+}
+
+#type_selector span {
+    width: calc(50% - 10px);
+    text-align: left;
+    margin: 5px 5px;
+}
+
+#type_selector span:first-child {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#type_selector input {
+    display: none;
+}
+
+#type_selector label {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    background: rgba(69, 85, 96, 0.2);
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+#type_selector label:hover {
+    cursor: pointer;
+    background: rgba(69, 85, 96, 0.3);
+}
+
+#type_selector input:checked+label {
+    background: var(--dc-green);
+    color: #fff;
+}
+
+#consent_check {
+    width: 95%;
+    max-height: 0;
+    padding: 0 10px;
+    margin: 0 auto;
+    background: rgba(69, 85, 96, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    user-select: none;
+    transition: 0.7s ease;
+    cursor: pointer;
+}
+
+.visible {
+    max-height: 250px !important;
+    padding: 10px !important;
+    margin: 0.5rem auto !important;
+}
+
+#consent_check span {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin: 5px 5px;
+}
+
+#consent_check label:hover {
+    cursor: pointer;
+}
+
+#consent_check label {
+    width: 90%;
+}
+
+#consent_check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+#consent_check #checkmark {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    margin: 4px 15px 0 0;
+    border: 2px solid var(--dc-green);
+    border-radius: 2px;
+    transition: 0.2s;
+}
+
+#consent_check:hover input~#checkmark {
+    background-color: #eee;
+}
+
+#consent_check input:checked~#checkmark {
+    background-color: var(--dc-green);
+}
+
+#consent_check #checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 1px;
+    left: 6px;
+    width: 5px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 1px;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#consent_check input:checked~#checkmark:after {
+    display: block;
+}
+
+#formNote {
+    color: #383838;
+    opacity: 0.7;
+    margin-left: auto;
+    padding: 0 10px 10px 10px;
+}
+
+button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem auto;
+    padding: 10px;
+    background-color: var(--dc-green);
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled:hover {
+    cursor: initial;
+    box-shadow: none;
+}
+
+#spinner {
+    /* opacity: 0; */
+    display: none;
+    height: 1.45rem;
+    width: 1.45rem;
+    border-radius: 50%;
+    background: transparent;
+    border: 3px solid transparent;
+    border-top: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    animation: spin 1s forwards infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media only screen and (min-width: 650px) {
+    body {
+        font-size: 1em;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #registration-page {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    body {
+        font-size: 1em;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #registration-page {
+        width: 30%;
+    }
+}
