@@ -192,12 +192,25 @@ window.onload = function () {
         spinner.style.display = "block";
 
         // sending/fetching data from the server
-        let url = "http://localhost:5000/api/uber";
+        let url = "http://localhost:5000/api/signup";
+
+        let data = {
+            first_name: document.querySelector('.name_first').value,
+            last_name: document.querySelector('.name_last').value,
+            email: document.querySelector('.email').value,
+            organization: document.querySelector('.organization').value,
+            city: document.querySelector('.city').value,
+            province: document.querySelector('.province').value,
+            role: document.querySelector("input[type=radio]:checked").value
+        }
         
         
         fetch(url, {
-                body: new FormData(e.target),
-                method: "post"
+                method: "post",
+                body: JSON.stringify(data), 
+                headers: new Headers({
+                'Content-Type': 'application/json'
+                })
             })
             .then(response => response.json())
             .then(message => {

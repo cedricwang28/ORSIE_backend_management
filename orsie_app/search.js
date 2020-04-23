@@ -140,7 +140,7 @@ searchForm.addEventListener("submit", (e) => {
 	if (searchForm.firstElementChild.value) {
 		// if text entered
 		let searchFormData = new FormData(e.target);
-		console.log(searchFormData,'sssss');
+		
 		
 		showSpinner();
 		search(searchFormData);
@@ -157,29 +157,28 @@ searchForm.addEventListener("submit", (e) => {
 // function to handle search and fetch data
 function search(searchData) {
 	// set service URL
-	let url = "https://services.mullasuleman.com/search.php";
+	let url = "http://localhost:5000/api/login";
+	let searchText = document.querySelector('#search-input').value;
+	
 	let searchMsg = "";
 	let errorMsg = "";
 	updateMessages(errorMsg);
 
 	// fetching data from the database
-	fetch(url, {
-			body: searchData,
-			method: "post"
-		})
+	fetch(`${url}?first_name=${searchText}`)
 		.then(response => response.json())
 		.then(contents => {
-			// when fetch data complete
-			// console.table(contents);
+			console.log(contents);
+			
 			searchMsg = "";
 			// set the names list if any data found
-			if (contents) {
+			if (contents.length>=1) {
 				contents.forEach(guest => {
 					searchMsg += `
-						<div class="result" data-id="${guest.id}" data-email="${guest.email}">
-							<h3>${guest.a_name}</h3>
-							<p>${guest.organization_name ? guest.organization_name : ""}</p>
-							<p>${guest.guest_type ? guest.guest_type : ""}</p>
+						<div class="result" data-id="" data-email="${guest.email}">
+							<h3>${guest.first_name}</h3>
+							<p>${guest.organization}</p>
+							<p>${guest.role}</p>
 						</div>`;
 				});
 				signInButton.style.display = "block";

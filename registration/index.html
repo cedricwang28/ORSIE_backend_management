@@ -38,12 +38,12 @@
  -->
             <!-- Registration form -->
             <form id="registration-form" method="post" class="reveal">
-                <input type="text" name="name_first" placeholder="*First Name" class="reveal" required>
-                <input type="text" name="name_last" placeholder="*Last Name" class="reveal" required>
-                <input type="email" name="email" placeholder="*Email Address" class="reveal" required>
-                <input type="text" name="organization_name" placeholder="Company/School" class="reveal">
-                <input type="text" name="city" placeholder="City/Town" class="reveal">
-                <input  type="text" list="list-province" name="province" placeholder="Province" class="reveal">
+                <input type="text" name="name_first" placeholder="*First Name" class="reveal name_first" required>
+                <input type="text" name="name_last" placeholder="*Last Name" class="reveal name_last" required>
+                <input type="email" name="email" placeholder="*Email Address" class="reveal email" required>
+                <input type="text" name="organization_name" placeholder="Company/School" class="reveal organization">
+                <input type="text" name="city" placeholder="City/Town" class="reveal city">
+                <input  type="text" list="list-province" name="province" placeholder="Province" class="reveal province">
                 <datalist id="list-province">
                     <option>Alberta</option>
                     <option>British Columbia</option>
@@ -105,20 +105,20 @@
     <!-- js file -->
     <script src="main.js"></script>
     <script>
-        var data = {name: "wtwtw"};
+        // var data = {name: "wtwtw"};
 
-        fetch("http://localhost:5000/api/os", {
+        // fetch("http://localhost:5000/api/os", {
         
-                method: "post",
-                body: JSON.stringify(data), 
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
-            })
-            .then(response => response.json())
-            .then(message => {
-                console.log(message);
-            });
+        //         method: "post",
+        //         body: JSON.stringify(data), 
+        //         headers: new Headers({
+        //             'Content-Type': 'application/json'
+        //         })
+        //     })
+        //     .then(response => response.json())
+        //     .then(message => {
+        //         console.log(message);
+        //     });
     
     </script>
 </body>

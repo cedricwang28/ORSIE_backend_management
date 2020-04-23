@@ -1,9 +1,19 @@
 let express = require('express');
 let router = express.Router();
 let Orsie = require('../models/model.js');
+let SignUp = require('../models/signup.js');
 
-router.get('/os', (req,res)=>{
-    Orsie.find().then((data)=>{
+router.post('/signup', (req,res,next)=>{
+    
+    SignUp.create(req.body).then((data)=>{
+        res.send(data);
+    }).catch(next); 
+});
+
+
+router.get('/login', (req,res)=>{
+    
+    SignUp.find({first_name:req.query.first_name}).then((data)=>{
         res.send(data);
     })
     
