@@ -2,18 +2,35 @@ import React from 'react'
 import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import './dashboard.css'
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { Layout, Menu, Dropdown, Avatar} from 'antd';
+import { UserOutlined, LaptopOutlined, NotificationOutlined,DownOutlined } from '@ant-design/icons';
 import {Switch,Route,Redirect} from "react-router-dom";
 import User from '../user'
 import Event from '../event'
 import { isLogined } from "../../../utils/auth";
+import { clearToken } from "../../../utils/auth";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-function Dashboard() {
+function Dashboard(props) {
     const history = useHistory();
+
+    const menu = (
+        <Menu onClick={p => {
+            if (p.key == "logOut") {
+              clearToken();
+              props.history.push("/login");
+            } 
+          }}>
+          <Menu.Item  key="logOut">
+            <a rel="noopener noreferrer" href="">
+              Log Out
+            </a>
+          </Menu.Item>
+          
+        </Menu>
+      );
 
     return isLogined() ? (
         
@@ -22,6 +39,14 @@ function Dashboard() {
             <div className="logo">
                 <img src={require('../../../assets/dclogo.png')} />
             </div>
+            <Dropdown overlay={menu}>
+                <div>
+                <Avatar>DC</Avatar>
+                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                Administrator <DownOutlined />
+                </a>
+                </div>
+            </Dropdown>
             
         </Header>
         <Layout>

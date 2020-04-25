@@ -20,7 +20,15 @@
   .header{
       height: 10vh;
       background-color: #d0e9f8;
+      display: flex;
+    justify-content: space-between;
   }
   .content{
       height: 85vh;
+  }
+
+  .ant-dropdown-link{
+      color: grey;
+      font-size: 16px;
+      margin-left: 5px;
   }
