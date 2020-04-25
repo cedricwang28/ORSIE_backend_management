@@ -7,6 +7,7 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
 import {Switch,Route,Redirect} from "react-router-dom";
 import User from '../user'
 import Event from '../event'
+import { isLogined } from "../../../utils/auth";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -14,7 +15,7 @@ const { Header, Content, Sider } = Layout;
 function Dashboard() {
     const history = useHistory();
 
-    return (
+    return isLogined() ? (
         
         <Layout>
         <Header className="header">
@@ -58,7 +59,9 @@ function Dashboard() {
             </Layout>
         </Layout>
         </Layout>
-    )
+    ): (
+        <Redirect to="/login" />
+      );
 }
 
 export default withRouter(Dashboard)

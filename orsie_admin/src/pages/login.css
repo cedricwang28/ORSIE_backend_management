@@ -1,0 +1,23 @@
+.login-form {
+    max-width: 450px;
+    margin: 20vh auto;
+    box-shadow: 0 0  10px rgba(0,0,0,0.2);
+    
+  }
+  
+
+  .formItem{
+      margin-right: 30px;
+  }
+
+  .adminLogin{
+      background-image: url(../assets/dc.jpg);
+      background-size: cover;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom:0;
+  }

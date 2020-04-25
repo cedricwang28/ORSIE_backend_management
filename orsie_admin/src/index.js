@@ -16,6 +16,7 @@ ReactDOM.render(
         
         <Route path="/login" component={Login} />
         <Route path="/admin" component={Dashboard} />
+        <Redirect to="/admin" from="/" />
         
       </Switch>
     </Router>
