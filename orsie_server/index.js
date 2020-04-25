@@ -1,7 +1,6 @@
 let express = require('express');
 var cors = require('cors')
 let router = require('./routes/api.js');
-let mongoose = require('./models/model.js');
 let bodyParser = require('body-parser');
 const connectDB = require('./connection');
 

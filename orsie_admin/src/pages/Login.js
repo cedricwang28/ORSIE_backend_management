@@ -1,7 +1,8 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox,Card } from 'antd';
+import { Form, Input, Button, Checkbox,Card,message } from 'antd';
 import "./login.css";
 import { setToken } from "../utils/auth";
+import { loginApi } from "../services/auth";
 
 const layout = {
     labelCol: {
@@ -23,8 +24,23 @@ function Login(props) {
       
     const onFinish = values => {
         console.log('Success:', values);
-        setToken(values.username);
-        props.history.push("/admin");
+        // setToken(values.username);
+        // props.history.push("/admin");
+        loginApi({
+            userName: values.username,
+            password: values.password
+          })
+            .then(res => {
+              if (res.code === "success") {
+                message.success("logged in");
+                setToken(res.token);
+                props.history.push("/admin");
+              } else {
+                message.info(res.message);
+              }
+              
+            })
+            
     };
     
     const onFinishFailed = errorInfo => {

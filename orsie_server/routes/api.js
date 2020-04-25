@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
-let Orsie = require('../models/model.js');
 let SignUp = require('../models/signup.js');
+let Admin = require('../models/admin.js');
 
 router.post('/signup', (req,res,next)=>{
     
@@ -18,6 +18,48 @@ router.get('/login', (req,res)=>{
     })
     
 });
+
+router.get('/admin_login', (req,res)=>{
+    
+    Admin.find({ username:userName }).then((data)=>{
+        console.log(data);
+        
+            
+    });
+    
+});
+
+router.post("/admin_login", (req, res, next) => {
+
+    //   Admin.create(req.body).then((data)=>{
+    //     res.send(data); 
+    //   });
+    const { userName, password } = req.body;
+    Admin.find({ username:userName }).then((data)=>{
+        if(userName==data[0].username && password == data[0].password){
+            res.json({
+                code: "success"
+              });
+        }else{
+            res.json({
+                code: "fail",
+                message:"Wrong password !"
+              });
+        }
+            
+    }).catch(()=>{
+        res.json({
+            code: "fail",
+            message:"Username not exist !"
+          });
+    });
+
+      
+    
+});
+
+
+
 
 router.get('/os/:id', (req,res,next)=>{
     Orsie.find({_id:req.params.id}).then((data)=>{
