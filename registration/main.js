@@ -217,7 +217,7 @@ window.onload = function () {
                 console.log(message);
                 
                 // code if connection is successful
-                if (message.id == 0) {
+                if (message.code == "success") {
                     // show success message if data inserted
                     registerText.innerHTML = `Thank you for your registration, ${inputFields[0].value}! <br>See you at the event.`;
                     spinner.style.display = "none";
@@ -231,7 +231,7 @@ window.onload = function () {
                         input.setAttribute("disabled", "disabled");
                     });
 
-                } else if (message.id == 3) {
+                } else if (message.code == 'taken') {
                     // show failure message if data insertion fails
                     // change color to red
                     TweenMax.to(submitButton, 0.5, {
@@ -253,7 +253,7 @@ window.onload = function () {
                             submitButton.removeAttribute("disabled");
                         }
                     })
-                } else {
+                } else if(message.code == 'error'){
                     // show failure message if data insertion fails
                     // change color to red
                     TweenMax.to(submitButton, 0.5, {

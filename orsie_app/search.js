@@ -168,14 +168,14 @@ function search(searchData) {
 	fetch(`${url}?first_name=${searchText}`)
 		.then(response => response.json())
 		.then(contents => {
-			console.log(contents);
-			
+					
 			searchMsg = "";
 			// set the names list if any data found
 			if (contents.length>=1) {
+				
 				contents.forEach(guest => {
 					searchMsg += `
-						<div class="result" data-id="" data-email="${guest.email}">
+						<div class="result" data-id="${guest._id}" data-email="${guest.email}">
 							<h3>${guest.first_name}</h3>
 							<p>${guest.organization}</p>
 							<p>${guest.role}</p>
@@ -284,11 +284,13 @@ function signIn(id, name) {
 	let formData = new FormData();
 	formData.append('id', id);
 	formData.append('event_name', document.querySelector("#event_name").value);
-	let url = "https://services.mullasuleman.com/sign_in.php";
+	let url = "http://localhost:5000/api/login";
 
 	// fetching data from the database
 	fetch(url, {
-			body: formData,
+			body: {
+				_id:id
+			},
 			method: "post"
 		})
 		.then(response => response.json())
@@ -297,7 +299,7 @@ function signIn(id, name) {
 			// console.log(message);
 			displayMsg = "";
 			// show welcome message if sign in successful
-			if (message.id == 0) {
+			if (message.code == "success") {
 				displayMsg += `
 					<div id="success">
 						<p>Welcome, ${name}!</p>
