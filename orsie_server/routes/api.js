@@ -87,6 +87,24 @@ router.post("/admin_login", (req, res, next) => {
 });
 
 
+router.get('/users', (req, res, next) => {
+    SignUp.find().then((data)=>{
+        res.send(data);
+    })
+    
+});
+
+router.delete('/users/:id', (req, res, next) => {
+    SignUp.findByIdAndRemove({_id:req.params.id}).then((data)=>{
+        res.send(data);
+    });
+});
+
+
+
+
+
+
 
 
 router.get('/os/:id', (req,res,next)=>{
