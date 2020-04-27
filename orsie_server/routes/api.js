@@ -117,6 +117,23 @@ router.get('/events', (req, res, next) => {
     
 });
 
+router.get('/events/:id', (req, res, next) => {
+    Event.find({_id:req.params.id}).then((data)=>{
+        res.send(data);
+    })
+    
+});
+
+router.put('/events/:id', (req,res,next)=>{
+    Event.findByIdAndUpdate({_id:req.params.id},req.body).then(()=>{
+        Event.find({_id:req.params.id}).then((data)=>{
+            res.json({
+                code: "success"
+            });
+        });
+    });
+});
+
 router.delete('/events/:id', (req, res, next) => {
     Event.findByIdAndRemove({_id:req.params.id}).then((data)=>{
         res.send(data);

@@ -1,7 +1,7 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Form, Input, InputNumber, Button, message, Card } from 'antd';
 import './user.css'
-import { createApi } from "../../services/event";
+import { createApi,getOneById,modifyOne } from "../../services/event";
 
 
 const layout = {
@@ -25,6 +25,21 @@ const layout = {
 
 
 function AddEvent(props) {
+
+    let {location} = props.history;
+
+    useEffect(()=>{
+        if(location.query.type == 'edit'){
+            getOneById(location.query.id).then((res)=>{
+                document.querySelector('.zoneInput').value = res[0].zone
+                document.querySelector('.MapIdInput').value = res[0].mapId
+                document.querySelector('.NameInput').value = res[0].name
+                document.querySelector('.LocationInput').value = res[0].location
+                document.querySelector('.discInput').value = res[0].discription
+            })
+        }
+    },[])
+
     const onFinish = () => {
         
         let data = {
@@ -34,16 +49,29 @@ function AddEvent(props) {
             location:document.querySelector('.LocationInput').value,
             discription:document.querySelector('.discInput').value,
         }
-        createApi(data).then((res)=>{
-            if(res.code == "success"){
-                message.success("a new event is added !");
-                document.querySelector('.zoneInput').value = ''
-                document.querySelector('.MapIdInput').value =''
-                document.querySelector('.NameInput').value =''
-                document.querySelector('.LocationInput').value=''
-                document.querySelector('.discInput').value=''
-            }
-        })
+        if(location.query.type == 'add'){
+            createApi(data).then((res)=>{
+                if(res.code == "success"){
+                    message.success("a new event is added !");
+                    document.querySelector('.zoneInput').value = ''
+                    document.querySelector('.MapIdInput').value =''
+                    document.querySelector('.NameInput').value =''
+                    document.querySelector('.LocationInput').value=''
+                    document.querySelector('.discInput').value=''
+                }
+            })
+        }
+
+        if(location.query.type == 'edit'){
+            modifyOne(location.query.id,data).then((res)=>{
+                if(res.code == "success"){
+                    message.success("The event is updated !");
+                    
+                }
+            })
+        }
+
+        
       };
     
       return (

@@ -61,7 +61,10 @@ function Event(props) {
         render:(txt,record,index)=>{
             return (
                 <div>
-                    <Button type="primary" size="small" onClick={() => props.history.push("/admin/addevent")}>Edit</Button>
+                    <Button type="primary" size="small" onClick={() => props.history.push({
+                        pathname: "/admin/addevent",
+                        query: {type: "edit", id:record._id}
+                    })}>Edit</Button>
                     <Popconfirm title="Are you sure to delete?" onCancel={()=>{console.log('cancel')}} onConfirm={()=>{
                         delOne(record._id);
                         loadData();
@@ -81,7 +84,10 @@ function Event(props) {
         <Button
           type="primary" className="addBtn"
           size="small"
-          onClick={() => props.history.push("/admin/addevent")}
+          onClick={() => props.history.push({
+            pathname: "/admin/addevent",
+            query: {type: "add", id:''}
+        })}
         >
           Add New
         </Button>

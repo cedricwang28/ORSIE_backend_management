@@ -22,7 +22,7 @@ export function createApi(data) {
  * @param {*} id
  */
 export function getOneById(id) {
-  return get(`/api/v1/admin/products/${id}`);
+  return get(`/api/events/${id}`);
 }
 
 /**
@@ -30,7 +30,7 @@ export function getOneById(id) {
  * @param {*} data
  */
 export function modifyOne(id, data) {
-  return put(`/api/v1/admin/products/${id}`, data);
+  return put(`/api/events/${id}`, data);
 }
 
 /**

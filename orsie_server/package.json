@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "concurrently \"nodemon index\" \"nodemon file.js\"",
+    "nodemon": "nodemon index",
     "start": "npm run nodemon"
   },
   "keywords": [],
