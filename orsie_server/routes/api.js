@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let SignUp = require('../models/signup.js');
 let Admin = require('../models/admin.js');
+let Event = require('../models/event.js');
 
 router.post('/signup', (req,res,next)=>{
     const { email } = req.body;
@@ -96,6 +97,28 @@ router.get('/users', (req, res, next) => {
 
 router.delete('/users/:id', (req, res, next) => {
     SignUp.findByIdAndRemove({_id:req.params.id}).then((data)=>{
+        res.send(data);
+    });
+});
+
+router.post('/event', (req, res, next) => {
+    Event.create(req.body).then((data)=>{
+        res.json({
+            code: "success"
+        });
+    })
+    
+});
+
+router.get('/events', (req, res, next) => {
+    Event.find().then((data)=>{
+        res.send(data);
+    })
+    
+});
+
+router.delete('/events/:id', (req, res, next) => {
+    Event.findByIdAndRemove({_id:req.params.id}).then((data)=>{
         res.send(data);
     });
 });

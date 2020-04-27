@@ -9,7 +9,7 @@ function User(props) {
 
     let [dataSource,setDataSource] = useState([]);
 
-    useEffect(() => {
+    let loadData = ()=>{
         listApi().then((res)=>{
             
             setDataSource(res.map((v,i)=>{
@@ -21,11 +21,14 @@ function User(props) {
                     identity:v.role,
                     _id:v._id
                 }
-
-            }));
-           
+            })); 
         })
-      }, [dataSource]);
+    }
+
+    useEffect(() => {
+        loadData();
+
+      }, []);
 
     const columns = [
     {
@@ -61,6 +64,7 @@ function User(props) {
                     <Button type="primary" size="small">Edit</Button>
                     <Popconfirm title="Are you sure to delete?" onCancel={()=>{console.log('cancel')}} onConfirm={()=>{
                         delOne(record._id);
+                        loadData();
                     }}>
                         <Button type="danger" style={{marginLeft:"5px"}} size="small">Delete</Button>
                     </Popconfirm>
