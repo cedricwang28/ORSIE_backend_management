@@ -1,0 +1,51 @@
+{
+  _id: 5ea1daec078b0ae86853fd98,
+  first_name: 'linda',
+  last_name: 'cheng',
+  email: 'Linda.Cheng@durhamcollege.ca',
+  organization: 'durham college',
+  city: 'OSHAWA',
+  province: 'Ontario',
+  role: 'Faculty',
+  __v: 0
+},{
+  _id: 5ea4f0fc9d4534361bd07085,
+  first_name: 'tianwei',
+  last_name: 'WANG',
+  email: 'www@abc.com',
+  organization: 'google',
+  city: 'tnt',
+  province: 'Ontario',
+  role: 'Faculty',
+  __v: 0
+},{
+  _id: 5ea4f5f6cf3aeb37e671aa1f,
+  first_name: 'michael',
+  last_name: 'pitt',
+  email: 'www@qqq.com',
+  organization: 'nasa',
+  city: 'ny',
+  province: 'Prince Edwards Island',
+  role: 'Faculty',
+  __v: 0
+},{
+  _id: 5ea654596ec44a4c8d709aa6,
+  first_name: 'michael',
+  last_name: 'jordan',
+  email: 'uuy@ff.jj',
+  organization: 'nba',
+  city: 'ccg',
+  province: 'British Columbia',
+  role: 'Guest',
+  __v: 0
+},{
+  _id: 5ea6553a6ec44a4c8d709aa7,
+  first_name: 'linda',
+  last_name: 'cheng',
+  email: 'linda@linda.ca',
+  organization: 'ddc',
+  city: 'ajax',
+  province: 'Quebec',
+  role: 'Student',
+  __v: 0
+}

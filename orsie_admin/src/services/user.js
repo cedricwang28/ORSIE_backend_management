@@ -10,6 +10,9 @@ export function listApi() {
     return get("/api/users");
 }
 
+export function downloadApi() {
+    return get("/api/download");
+}
 
 /**
  * @param {*} data

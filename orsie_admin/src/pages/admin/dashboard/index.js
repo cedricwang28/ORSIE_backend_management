@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import './dashboard.css'
-import { Layout, Menu, Dropdown, Avatar} from 'antd';
+import { Layout, Menu, Dropdown, Avatar,Button} from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined,DownOutlined } from '@ant-design/icons';
 import {Switch,Route,Redirect} from "react-router-dom";
 import User from '../user'
@@ -40,6 +40,7 @@ function Dashboard(props) {
             <div className="logo">
                 <img src={require('../../../assets/dclogo.png')} />
             </div>
+            
             <Dropdown overlay={menu}>
                 <div>
                 <Avatar>DC</Avatar>
@@ -62,6 +63,8 @@ function Dashboard(props) {
                 <Menu.Item onClick={() => history.push('/admin/user')}><UserOutlined />Users</Menu.Item>
                 <Menu.Item onClick={() => history.push('/admin/event')}><NotificationOutlined />Events</Menu.Item>
             </Menu>
+
+                
             </Sider>
             <Layout style={{ padding: '16px 24px 24px' }}>
             

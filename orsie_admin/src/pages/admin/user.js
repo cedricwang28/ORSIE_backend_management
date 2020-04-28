@@ -1,7 +1,8 @@
 import React, {useState, useEffect } from "react";
 import { Card, Table, Button, Popconfirm } from "antd";
 import './user.css'
-import { listApi,delOne } from "../../services/user";
+import { listApi,delOne,downloadApi } from "../../services/user";
+const download = require("downloadjs");
 
 
 
@@ -73,10 +74,26 @@ function User(props) {
         }
     }]
 
+
+    let handleDownload = ()=>{
+        downloadApi().then((res)=>{
+            
+            download(res, "test.txt");
+        })
+    }
     
 
     return (
         
+    <Card title="User Lists" className="card"  extra={
+            <Button
+              type="primary"  className="report"
+              size="small"
+              onClick={handleDownload}
+            >
+              Download Report
+            </Button>
+        }>
       <Table
         rowClassName="rows"
         rowKey="_id"
@@ -90,6 +107,7 @@ function User(props) {
         columns={columns}
         dataSource={dataSource}
       />
+    </Card>
     
     )
 }
