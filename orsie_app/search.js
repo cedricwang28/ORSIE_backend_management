@@ -148,7 +148,7 @@ searchForm.addEventListener("submit", (e) => {
 		// if search text not entered
 		displayMsg = `
 			<div id="error">
-				<p>Please enter your name or email to search.</p>
+				<p>Please enter your fullname or email to search.</p>
 			</div>`;
 		updateMessages(displayMsg);
 	}
@@ -158,14 +158,19 @@ searchForm.addEventListener("submit", (e) => {
 function search(searchData) {
 	// set service URL
 	let url = "http://localhost:5000/api/login";
-	let searchText = document.querySelector('#search-input').value;
+	let searchText = document.querySelector('#search-input').value.toLowerCase();
+	const words = searchText.split(' ');
+	let firstName = words[0]
+	let lastName = words[1]
+	console.log(firstName,lastName);
+	
 	
 	let searchMsg = "";
 	let errorMsg = "";
 	updateMessages(errorMsg);
 
 	// fetching data from the database
-	fetch(`${url}?first_name=${searchText}`)
+	fetch(`${url}?first_name=${firstName}&last_name=${lastName}`)
 		.then(response => response.json())
 		.then(contents => {
 					
@@ -174,9 +179,14 @@ function search(searchData) {
 			if (contents.length>=1) {
 				
 				contents.forEach(guest => {
+					guest.first_name = guest.first_name.charAt(0).toUpperCase() + 
+					guest.first_name.slice(1); 
+					guest.last_name = guest.last_name.charAt(0).toUpperCase() + 
+					guest.last_name.slice(1); 
+
 					searchMsg += `
 						<div class="result" data-id="${guest._id}" data-email="${guest.email}">
-							<h3>${guest.first_name}</h3>
+							<h3>${guest.first_name} ${guest.last_name}</h3>
 							<p>${guest.organization}</p>
 							<p>${guest.role}</p>
 						</div>`;

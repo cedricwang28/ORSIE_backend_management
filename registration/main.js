@@ -195,13 +195,13 @@ window.onload = function () {
         let url = "http://localhost:5000/api/signup";
 
         let data = {
-            first_name: document.querySelector('.name_first').value,
-            last_name: document.querySelector('.name_last').value,
-            email: document.querySelector('.email').value,
-            organization: document.querySelector('.organization').value,
-            city: document.querySelector('.city').value,
-            province: document.querySelector('.province').value,
-            role: document.querySelector("input[type=radio]:checked").value
+            first_name: document.querySelector('.name_first').value.trim().toLowerCase(),
+            last_name: document.querySelector('.name_last').value.trim().toLowerCase(),
+            email: document.querySelector('.email').value.trim().toLowerCase(),
+            organization: document.querySelector('.organization').value.trim().toLowerCase(),
+            city: document.querySelector('.city').value.trim().toLowerCase(),
+            province: document.querySelector('.province').value.trim().toLowerCase(),
+            role: document.querySelector("input[type=radio]:checked").value.trim().toLowerCase()
         }
         
         

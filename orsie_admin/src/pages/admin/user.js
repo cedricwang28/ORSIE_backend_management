@@ -78,7 +78,9 @@ function User(props) {
     let handleDownload = ()=>{
         downloadApi().then((res)=>{
             
-            download(res, "test.txt");
+            download(new Blob([res]), "test.txt");
+
+            
         })
     }
     

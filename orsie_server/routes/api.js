@@ -46,7 +46,7 @@ router.post('/signup', (req,res,next)=>{
 
 router.get('/login', (req,res)=>{
     
-    SignUp.find({first_name:req.query.first_name}).then((data)=>{
+    SignUp.find({first_name:req.query.first_name, last_name:req.query.last_name}).then((data)=>{
         res.send(data);
     })
     
@@ -87,7 +87,7 @@ router.post("/admin_login", (req, res, next) => {
         }else{
             res.json({
                 code: "fail",
-                message:"Wrong password !"
+                message:"Wrong password!"
               });
         }
             
