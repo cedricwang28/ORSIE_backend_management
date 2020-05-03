@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { Form, Input, InputNumber, Button, message, Card } from 'antd';
 import './user.css'
 import { createApi,getOneById,modifyOne } from "../../services/event";
@@ -27,18 +27,13 @@ const layout = {
 function AddEvent(props) {
 
     let {location} = props.history;
+    const [formData, setFormData] = useState({});
 
     useEffect(()=>{
         if(location.query.type == 'edit'){
             getOneById(location.query.id).then((res)=>{
-                document.querySelector('.zoneInput').value = res[0].zone
-                document.querySelector('.MapIdInput').value = res[0].mapId
-                document.querySelector('.NameInput').value = res[0].name
-                document.querySelector('.LocationInput').value = res[0].location
-                document.querySelector('.discInput').value = res[0].discription
-                document.querySelector('.timeInput').value = res[0].time
-                document.querySelector('.scheduleInput').value = res[0].schedule
-                document.querySelector('.popupInput').value = res[0].popup
+                
+                setFormData(res[0])
             })
         }
     },[])
@@ -59,14 +54,17 @@ function AddEvent(props) {
             createApi(data).then((res)=>{
                 if(res.code == "success"){
                     message.success("a new event is added !");
-                    document.querySelector('.zoneInput').value = ''
-                    document.querySelector('.MapIdInput').value =''
-                    document.querySelector('.NameInput').value =''
-                    document.querySelector('.LocationInput').value=''
-                    document.querySelector('.timeInput').value=''
-                    document.querySelector('.discInput').value=''
-                    document.querySelector('.scheduleInput').value=''
-                    document.querySelector('.popupInput').value=''
+                    
+                    setFormData({
+                        zone:'',
+                        mapId:'',
+                        name:'',
+                        location:'',
+                        time:'',
+                        discription:'',
+                        schedule:'',
+                        popup:''
+                    })
                 }
             })
         }
@@ -98,33 +96,32 @@ function AddEvent(props) {
           <Form.Item
             label="Zone"
           >
-            <Input className="zoneInput"/>
+            <Input className="zoneInput" value={formData.zone} onChange={e => setFormData({...formData,zone:e.target.value})}/>
           </Form.Item>
           <Form.Item
             label="MapId"
           >
-            <Input className="MapIdInput" />
+            <Input className="MapIdInput" value={formData.mapId} onChange={e => setFormData({...formData,mapId:e.target.value})}/>
           </Form.Item>
           <Form.Item
             label="Name"
-            
           >
-            <Input className="NameInput" />
+            <Input className="NameInput" value={formData.name} onChange={e => setFormData({...formData,name:e.target.value})}/>
           </Form.Item>
           <Form.Item label="Location">
-            <Input className="LocationInput"/>
+            <Input className="LocationInput" value={formData.location} onChange={e => setFormData({...formData,location:e.target.value})}/>
           </Form.Item>
           <Form.Item label="Time">
-            <Input className="timeInput"/>
+            <Input className="timeInput" value={formData.time} onChange={e => setFormData({...formData,time:e.target.value})}/>
           </Form.Item>
           <Form.Item label="Discription">
-            <Input.TextArea  className="discInput"/>
+            <Input.TextArea  className="discInput" value={formData.discription} onChange={e => setFormData({...formData,discription:e.target.value})}/>
           </Form.Item>
           <Form.Item label="Schedule">
-            <Input.TextArea  className="scheduleInput"/>
+            <Input.TextArea  className="scheduleInput" value={formData.schedule} onChange={e => setFormData({...formData,schedule:e.target.value})}/>
           </Form.Item>
           <Form.Item label="PopUps">
-            <Input.TextArea  className="popupInput"/>
+            <Input.TextArea  className="popupInput" value={formData.popup} onChange={e => setFormData({...formData,popup:e.target.value})}/>
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button type="primary" htmlType="submit">
