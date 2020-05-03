@@ -36,6 +36,9 @@ function AddEvent(props) {
                 document.querySelector('.NameInput').value = res[0].name
                 document.querySelector('.LocationInput').value = res[0].location
                 document.querySelector('.discInput').value = res[0].discription
+                document.querySelector('.timeInput').value = res[0].time
+                document.querySelector('.scheduleInput').value = res[0].schedule
+                document.querySelector('.popupInput').value = res[0].popup
             })
         }
     },[])
@@ -47,7 +50,10 @@ function AddEvent(props) {
             mapId:document.querySelector('.MapIdInput').value,
             name:document.querySelector('.NameInput').value,
             location:document.querySelector('.LocationInput').value,
+            time:document.querySelector('.timeInput').value,
             discription:document.querySelector('.discInput').value,
+            schedule:document.querySelector('.scheduleInput').value,
+            popup:document.querySelector('.popupInput').value
         }
         if(location.query.type == 'add'){
             createApi(data).then((res)=>{
@@ -57,7 +63,10 @@ function AddEvent(props) {
                     document.querySelector('.MapIdInput').value =''
                     document.querySelector('.NameInput').value =''
                     document.querySelector('.LocationInput').value=''
+                    document.querySelector('.timeInput').value=''
                     document.querySelector('.discInput').value=''
+                    document.querySelector('.scheduleInput').value=''
+                    document.querySelector('.popupInput').value=''
                 }
             })
         }
@@ -85,7 +94,7 @@ function AddEvent(props) {
             </Button>
           }>
 
-        <Form {...layout} className="eventForm" name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+        <Form {...layout} className="eventForm" name="nest-messages" onFinish={onFinish} >
           <Form.Item
             label="Zone"
           >
@@ -105,8 +114,17 @@ function AddEvent(props) {
           <Form.Item label="Location">
             <Input className="LocationInput"/>
           </Form.Item>
+          <Form.Item label="Time">
+            <Input className="timeInput"/>
+          </Form.Item>
           <Form.Item label="Discription">
             <Input.TextArea  className="discInput"/>
+          </Form.Item>
+          <Form.Item label="Schedule">
+            <Input.TextArea  className="scheduleInput"/>
+          </Form.Item>
+          <Form.Item label="PopUps">
+            <Input.TextArea  className="popupInput"/>
           </Form.Item>
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button type="primary" htmlType="submit">

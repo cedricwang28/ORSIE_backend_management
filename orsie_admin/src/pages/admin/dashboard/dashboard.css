@@ -24,7 +24,7 @@
     justify-content: space-between;
   }
   .content{
-      height: 85vh;
+      height: auto;
   }
 
   .ant-dropdown-link{

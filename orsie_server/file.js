@@ -1,14 +1,14 @@
-let fs = require('fs')
-var request = require("request");
+// let fs = require('fs')
+// var request = require("request");
 
-fs.writeFile('logs/hello.txt','fkccp',null, (error)=>{
-    if(error){
-        console.log(error);
-    }else{
-        console.log("success");
+// fs.writeFile('logs/hello.txt','fkccp',null, (error)=>{
+//     if(error){
+//         console.log(error);
+//     }else{
+//         console.log("success");
         
-    }
-})
+//     }
+// })
 
 
 

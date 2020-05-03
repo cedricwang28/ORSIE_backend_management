@@ -20,3 +20,32 @@
     border: none;
 
 }
+
+h3{
+    float: left;
+}
+
+.search{
+    margin-bottom: 4px;
+    transform: translate(0,-4px)
+}
+.download{
+    float: right;
+    margin-left: 30px;
+}
+
+.checkbox{
+    
+}
+
+
+.addBtn{
+    margin-left: 100px;
+    transform: translate(0,-5px);
+    margin-bottom: 5px;
+}
+
+.roleFilter, .yearFilter{
+    width: 150px;
+    margin-left: 20px;
+}

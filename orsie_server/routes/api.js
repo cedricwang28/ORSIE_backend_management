@@ -6,6 +6,11 @@ let Event = require('../models/event.js');
 
 let fs = require('fs')
 
+const pdfMake = require('pdfmake/build/pdfmake')
+const vfsFonts = require('pdfmake/build/vfs_fonts')
+
+pdfMake.vfs = vfsFonts.pdfMake.vfs
+
 
 
 // fs.writeFile('logs/hello.txt','fkccp', (error)=>{
@@ -107,14 +112,14 @@ router.get('/users', (req, res, next) => {
     SignUp.find().then((data)=>{
         res.send(data);
 
-        fs.writeFile('logs/hello.txt',data, (error)=>{
-            if(error){
-                console.log(error);
-            }else{
-                console.log("success");
+        // fs.writeFile('logs/hello.txt',data, (error)=>{
+        //     if(error){
+        //         console.log(error);
+        //     }else{
+        //         console.log("success");
                 
-            }
-        })
+        //     }
+        // })
     })
     
 });
@@ -128,7 +133,75 @@ router.delete('/users/:id', (req, res, next) => {
 
 router.get('/download', function (req, res, next) {
 
-    res.download('./logs/hello.txt', 'hello1.log');
+    // res.download('./logs/hello.txt', 'hello1.log');
+
+    var documentDefinition = {
+        content: [
+            `uiyuiiuyuyiuyiuiuyuiyuiyuyuyuiyiuiuyuiyiuyuuiyuii` ,
+            'Nice to meet you!'
+        ]        
+    };
+
+    const pdfDoc = pdfMake.createPdf(documentDefinition);
+    pdfDoc.getBase64((data)=>{
+        res.writeHead(200, 
+        {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition':'attachment;filename="filename.pdf"'
+        });
+
+        const download = Buffer.from(data.toString('utf-8'), 'base64');
+        res.end(download);
+    });
+    
+});
+
+router.post('/search', function (req, res, next) {
+
+    const { searchTxt } = req.body;
+
+    if(searchTxt==''){
+        SignUp.find().then((data)=>{
+            res.send(data);
+        })
+    }else{
+        SignUp.find({$or:[
+            {full_name:{$regex:searchTxt}},
+            {email:{$regex:searchTxt}},
+            {organization:{$regex:searchTxt}},
+            {role:{$regex:searchTxt}},
+            {year:{$regex:searchTxt}}
+        ]
+        })
+        .then((data)=>{
+            res.send(data);
+        })
+    }
+    
+});
+
+router.post('/filter', function (req, res, next) {
+
+    const {idFilter, yearFilter } = req.body;
+
+    if(idFilter=='' && yearFilter==''){
+        SignUp.find().then((data)=>{
+            res.send(data);
+        })
+    }else if(idFilter==''){
+        SignUp.find({year:yearFilter}).then((data)=>{
+            res.send(data);
+        })
+    }else if(yearFilter==''){
+        SignUp.find({role:idFilter}).then((data)=>{
+            res.send(data);
+        })
+    }else{
+        SignUp.find({role:idFilter,year:yearFilter}).then((data)=>{
+            res.send(data);
+        })
+    }
+    
     
 });
 

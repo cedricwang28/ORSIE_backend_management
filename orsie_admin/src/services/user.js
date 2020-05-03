@@ -14,6 +14,14 @@ export function downloadApi() {
     return get("/api/download");
 }
 
+export function searchApi(data) {
+    return post("/api/search", data);
+}
+
+export function filterApi(data) {
+    return post("/api/filter", data);
+}
+
 /**
  * @param {*} data
  */

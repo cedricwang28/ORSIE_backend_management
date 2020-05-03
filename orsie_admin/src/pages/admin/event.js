@@ -5,6 +5,7 @@ import { listApi,delOne } from "../../services/event";
 
 
 
+
 function Event(props) {
 
     let [dataSource,setDataSource] = useState([]);
@@ -19,6 +20,9 @@ function Event(props) {
                     mapId:v.mapId,
                     name:v.name,
                     location:v.location,
+                    time:v.time,
+                    schedule:v.schedule,
+                    discription:v.discription,
                     _id:v._id
                 }
             })); 
@@ -32,29 +36,20 @@ function Event(props) {
 
     const columns = [
     {
-      title: "Order",
-      key: "_id",
-      width: 20,
-      align: "center",
-      render: (txt, record, index) => index + 1
-    },
-    {
       title: "Zone",
       dataIndex: "zone"
     },
     {
-      title: "MapId",
-      dataIndex: "mapId"
-      
-    },
-    {
         title: "Name",
-        dataIndex: "name"
-        
+        dataIndex: "name"  
     },
     {
         title: "Location",
         dataIndex: "location"
+        
+    },{
+        title: "Time",
+        dataIndex: "time"
         
     },{
         title:"Manage",
@@ -80,19 +75,27 @@ function Event(props) {
 
     return (
     
-    <Card title="Events list" className="card" extra={
-        <Button
-          type="primary" className="addBtn"
-          size="small"
-          onClick={() => props.history.push({
+    // <Card title="Events list" className="card" extra={
+    //     <Button
+    //       type="primary" className="addBtn"
+    //       size="small"
+    //       onClick={() => props.history.push({
+    //         pathname: "/admin/addevent",
+    //         query: {type: "add", id:''}
+    //     })}
+    //     >
+    //       Add New
+    //     </Button>
+    //   }>
+    <>
+        <h3>Events List</h3>
+        <Button type="primary" shape="round" className="addBtn" onClick={() => props.history.push({
             pathname: "/admin/addevent",
             query: {type: "add", id:''}
-        })}
-        >
+        })}>
           Add New
         </Button>
-      }>
-        
+
       <Table
         rowClassName="rows"
         rowKey="_id"
@@ -106,8 +109,8 @@ function Event(props) {
         columns={columns}
         dataSource={dataSource}
       />
-
-    </Card>
+    </>
+    
     
     )
 }

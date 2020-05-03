@@ -19,9 +19,19 @@ let eventSchema = new Schema({
         type:String,
         required:true
     },
+    time:{
+        type:String,
+        required:true
+    },
     discription:{
         type:String,
         required:true
+    },
+    schedule:{
+        type:Array
+    },
+    popup:{
+        type:Array
     }
 });
 

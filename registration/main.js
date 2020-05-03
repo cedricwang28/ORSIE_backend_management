@@ -197,11 +197,13 @@ window.onload = function () {
         let data = {
             first_name: document.querySelector('.name_first').value.trim().toLowerCase(),
             last_name: document.querySelector('.name_last').value.trim().toLowerCase(),
-            email: document.querySelector('.email').value.trim().toLowerCase(),
+            full_name: document.querySelector('.name_first').value.trim().toLowerCase()+' '+document.querySelector('.name_last').value.trim().toLowerCase(),
+            email: document.querySelector('.email').value.trim(),
             organization: document.querySelector('.organization').value.trim().toLowerCase(),
             city: document.querySelector('.city').value.trim().toLowerCase(),
             province: document.querySelector('.province').value.trim().toLowerCase(),
-            role: document.querySelector("input[type=radio]:checked").value.trim().toLowerCase()
+            role: document.querySelector("input[type=radio]:checked").value.trim().toLowerCase(),
+            year: "2020 orsie"
         }
         
         
