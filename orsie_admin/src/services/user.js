@@ -11,7 +11,7 @@ export function listApi() {
 }
 
 export function downloadApi() {
-    return get("/api/download");
+    return get("/api/download",{responseType: 'arraybuffer'});
 }
 
 export function searchApi(data) {

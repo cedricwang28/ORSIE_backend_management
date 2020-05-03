@@ -48,7 +48,8 @@ function AddEvent(props) {
             time:document.querySelector('.timeInput').value,
             discription:document.querySelector('.discInput').value,
             schedule:document.querySelector('.scheduleInput').value,
-            popup:document.querySelector('.popupInput').value
+            popup:document.querySelector('.popupInput').value,
+            year:'2020 orsie'
         }
         if(location.query.type == 'add'){
             createApi(data).then((res)=>{

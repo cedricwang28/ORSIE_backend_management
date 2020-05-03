@@ -99,7 +99,14 @@ function User(props) {
         downloadApi().then((res)=>{
             
             
-            download(res);
+            const url = window.URL.createObjectURL(new Blob([res.data]
+                ,{type: "application/pdf"}))
+              var link = document.createElement('a');
+              link.href = url;
+              link.setAttribute('download', 'resume.pdf');
+              document.body.appendChild(link);
+              link.click();
+            
 
             
         })

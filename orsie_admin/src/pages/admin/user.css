@@ -40,7 +40,7 @@ h3{
 
 
 .addBtn{
-    margin-left: 100px;
+    margin-left: 50px;
     transform: translate(0,-5px);
     margin-bottom: 5px;
 }
@@ -48,4 +48,10 @@ h3{
 .roleFilter, .yearFilter{
     width: 150px;
     margin-left: 20px;
+}
+
+.selectYear{
+    width: 180px;
+    margin-left: 50px;
+    transform: translate(0,-5px);
 }

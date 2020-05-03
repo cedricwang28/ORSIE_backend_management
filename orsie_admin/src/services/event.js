@@ -25,6 +25,10 @@ export function getOneById(id) {
   return get(`/api/events/${id}`);
 }
 
+export function selectYearApi(data) {
+    return post("/api/year", data);
+}
+
 /**
  * @param {*} id
  * @param {*} data

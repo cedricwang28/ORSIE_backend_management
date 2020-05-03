@@ -137,8 +137,8 @@ router.get('/download', function (req, res, next) {
 
     var documentDefinition = {
         content: [
-            `uiyuiiuyuyiuyiuiuyuiyuiyuyuyuiyiuiuyuiyiuyuuiyuii` ,
-            'Nice to meet you!'
+            `udsddsfsssjksdkldkldsjkds` 
+            
         ]        
     };
 
@@ -202,6 +202,22 @@ router.post('/filter', function (req, res, next) {
         })
     }
     
+    
+});
+
+router.post('/year', function (req, res, next) {
+
+    const {selectYear } = req.body;
+
+    if(selectYear==""){
+        Event.find().then((data)=>{
+            res.send(data);
+        })
+    }else{
+        Event.find({year:selectYear}).then((data)=>{
+            res.send(data);
+        })
+    }
     
 });
 

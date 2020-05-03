@@ -23,6 +23,10 @@ let eventSchema = new Schema({
         type:String,
         required:true
     },
+    year:{
+        type:String,
+        required:true
+    },
     discription:{
         type:String,
         required:true
