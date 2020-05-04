@@ -40,16 +40,7 @@ function User(props) {
       }, []);
 
     const columns = [
-        {
-            title:"",
-            render:(txt,record,index)=>{
-                return (
-                    <div>
-                        <input type="checkbox" className="checkbox"/>
-                    </div>
-                )
-            }
-        },
+        
     {
       title: "Order",
       key: "_id",
@@ -101,14 +92,14 @@ function User(props) {
         
         let doc = new jsPDF();
 
-        // let imgData = orsieImg
+        let imgData = orsieImg
 
-        // doc.addImage(imgData,'jpg',30,30,100,50)
+        doc.addImage(imgData,'jpg',10,10,40,20)
         
-        // doc.setFont('arial')
-        // doc.setFontType('bold')
-        // doc.setFontSize('30')
-        // doc.text(160,30,'Data Report')
+        doc.setFont('Helvetica')
+        doc.setFontType('bold')
+        doc.setFontSize('25')
+        doc.text(75,22,'Attendant List')
 
         let tableBody=[];
         dataSource.forEach((item,index)=>{
@@ -119,7 +110,8 @@ function User(props) {
 
         doc.autoTable({
             head:[['Order','Name','Organization','Email','Identity','Year']],
-            body:tableBody
+            body:tableBody,
+            margin: { top: 42 }
         });
 
         doc.save('geneated.pdf')
