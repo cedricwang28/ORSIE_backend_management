@@ -3,6 +3,9 @@ import { Card, Table, Button, Popconfirm, Input } from "antd";
 import './user.css'
 import { listApi,delOne,downloadApi, searchApi, filterApi } from "../../services/user";
 import { DownloadOutlined} from '@ant-design/icons';
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
+import orsieImg from '../../assets/imgData'
 
 const download = require("downloadjs");
 const { Search } = Input;
@@ -96,20 +99,30 @@ function User(props) {
 
     let handleDownload = ()=>{
         
-        downloadApi().then((res)=>{
-            
-            
-            const url = window.URL.createObjectURL(new Blob([res.data]
-                ,{type: "application/pdf"}))
-              var link = document.createElement('a');
-              link.href = url;
-              link.setAttribute('download', 'resume.pdf');
-              document.body.appendChild(link);
-              link.click();
-            
+        let doc = new jsPDF();
 
-            
+        // let imgData = orsieImg
+
+        // doc.addImage(imgData,'jpg',30,30,100,50)
+        
+        // doc.setFont('arial')
+        // doc.setFontType('bold')
+        // doc.setFontSize('30')
+        // doc.text(160,30,'Data Report')
+
+        let tableBody=[];
+        dataSource.forEach((item,index)=>{
+            let tableRow = [index+1,item.name,item.organization,item.email,item.identity,item.year];
+            tableBody.push(tableRow);
         })
+    
+
+        doc.autoTable({
+            head:[['Order','Name','Organization','Email','Identity','Year']],
+            body:tableBody
+        });
+
+        doc.save('geneated.pdf')
     }
 
     let handleSearch = (value)=>{
@@ -211,9 +224,10 @@ function User(props) {
             <option value="2019 orsie">2019 ORSIE</option>
             <option value="2018 orsie">2018 ORSIE</option>
         </select>
-        
+    
+
       <Table
-        rowClassName="rows"
+        rowClassName="rows" 
         rowKey="_id"
         pagination={{
           
