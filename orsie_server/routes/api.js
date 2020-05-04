@@ -6,22 +6,6 @@ let Event = require('../models/event.js');
 
 let fs = require('fs')
 
-const pdfMake = require('pdfmake/build/pdfmake')
-const vfsFonts = require('pdfmake/build/vfs_fonts')
-
-pdfMake.vfs = vfsFonts.pdfMake.vfs
-
-
-
-// fs.writeFile('logs/hello.txt','fkccp', (error)=>{
-//     if(error){
-//         console.log(error);
-//     }else{
-//         console.log("success");
-        
-//     }
-// })
-
 
 
 router.post('/signup', (req,res,next)=>{
@@ -112,14 +96,6 @@ router.get('/users', (req, res, next) => {
     SignUp.find().then((data)=>{
         res.send(data);
 
-        // fs.writeFile('logs/hello.txt',data, (error)=>{
-        //     if(error){
-        //         console.log(error);
-        //     }else{
-        //         console.log("success");
-                
-        //     }
-        // })
     })
     
 });
@@ -133,27 +109,6 @@ router.delete('/users/:id', (req, res, next) => {
 
 router.get('/download', function (req, res, next) {
 
-    // res.download('./logs/hello.txt', 'hello1.log');
-
-    var documentDefinition = {
-        content: [
-            `udsddsfsssjksdkldkldsjkds` 
-            
-        ]        
-    };
-
-    const pdfDoc = pdfMake.createPdf(documentDefinition);
-    pdfDoc.getBase64((data)=>{
-        res.writeHead(200, 
-        {
-            'Content-Type': 'application/pdf',
-            'Content-Disposition':'attachment;filename="filename.pdf"'
-        });
-
-        const download = Buffer.from(data.toString('utf-8'), 'base64');
-        res.end(download);
-    });
-    
 });
 
 router.post('/search', function (req, res, next) {
