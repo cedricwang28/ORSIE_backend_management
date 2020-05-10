@@ -35,6 +35,9 @@ let signup = new Schema({
     year:{
         type:String,
         required:true
+    },
+    attend:{
+        type:Array
     }
 
 });

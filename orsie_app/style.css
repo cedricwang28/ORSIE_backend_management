@@ -866,3 +866,14 @@ img {
 		color: #ffa50000;
 	}
 }
+
+
+
+
+.checkbox{
+	position: absolute;
+	right: 25px;
+	top: 20px;
+	transform: scale(1.8);
+}
+

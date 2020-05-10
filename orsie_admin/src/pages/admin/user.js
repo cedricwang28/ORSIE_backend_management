@@ -114,7 +114,7 @@ function User(props) {
             margin: { top: 42 }
         });
 
-        doc.save('geneated.pdf')
+        doc.save('report.pdf')
     }
 
     let handleSearch = (value)=>{

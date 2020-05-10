@@ -200,12 +200,21 @@ router.get('/events/:id', (req, res, next) => {
 });
 
 router.put('/events/:id', (req,res,next)=>{
+    // const  thePopup =  req.body.popup;
+    // let cao = JSON.parse(thePopup)
+
     Event.findByIdAndUpdate({_id:req.params.id},req.body).then(()=>{
-        Event.find({_id:req.params.id}).then((data)=>{
+
+        Event.findByIdAndUpdate({_id:req.params.id}, {$addToSet:{popup:{}}}).then((data)=>{
             res.json({
                 code: "success"
             });
         });
+        // Event.find({_id:req.params.id}).then((data)=>{
+        //     res.json({
+        //         code: "success"
+        //     });
+        // });
     });
 });
 
@@ -215,6 +224,35 @@ router.delete('/events/:id', (req, res, next) => {
     });
 });
 
+
+router.get('/attend/add', (req,res,next)=>{
+    let {email,zone} = req.query
+    SignUp.findOneAndUpdate({email:email}, {$addToSet:{attend:zone}}).then((data)=>{
+        res.json({
+            code: "success"
+        });
+    });
+
+});
+
+router.get('/attend/remove', (req,res,next)=>{
+    let {email,zone} = req.query
+    SignUp.findOneAndUpdate({email:email}, {$pull:{attend:zone}}).then((data)=>{
+        res.json({
+            code: "success"
+        });
+    });
+
+});
+
+
+router.get('/attend/preload', (req,res,next)=>{
+    let {email} = req.query
+    SignUp.find({email:email}).then((data)=>{
+        res.send(data);
+    });
+
+});
 
 
 

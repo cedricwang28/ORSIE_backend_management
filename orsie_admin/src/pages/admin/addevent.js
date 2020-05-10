@@ -115,7 +115,7 @@ function AddEvent(props) {
           <Form.Item label="Time">
             <Input className="timeInput" value={formData.time} onChange={e => setFormData({...formData,time:e.target.value})}/>
           </Form.Item>
-          <Form.Item label="Discription">
+          <Form.Item label="Description">
             <Input.TextArea  className="discInput" value={formData.discription} onChange={e => setFormData({...formData,discription:e.target.value})}/>
           </Form.Item>
           <Form.Item label="Schedule">

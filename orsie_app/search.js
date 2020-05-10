@@ -265,7 +265,7 @@ signInButton.addEventListener("click", function () {
 		// checking if the email is proper format
 		// if proper format, check if emails match and sign in
 		if (emailInput.value == emailClicked || emailInput.value == "test@email.com") {
-			// sign the user in when sign in is clicked
+			localStorage.setItem("orsieEmail", emailInput.value);
 			showSpinner();
 			signIn(idClicked, nameToDisplay);
 		} else {
