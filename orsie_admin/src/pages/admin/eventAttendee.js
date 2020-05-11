@@ -84,8 +84,13 @@ function Attendee(props) {
         
         doc.setFont('Helvetica')
         doc.setFontType('bold')
-        doc.setFontSize('25')
-        doc.text(75,22,'Attendant List')
+        doc.setFontSize('24')
+        doc.text(75,22,`Attendant List`)
+
+        doc.setFontType('normal')
+        doc.setFontSize('14')
+
+        doc.text(10,40,`Event: ${location.query.name}`)
 
         let tableBody=[];
         dataSource.forEach((item,index)=>{
@@ -97,7 +102,7 @@ function Attendee(props) {
         doc.autoTable({
             head:[['Order','Name','Organization','Email','Identity','Year']],
             body:tableBody,
-            margin: { top: 42 }
+            margin: { top: 50 }
         });
 
         doc.save('event attendee.pdf')

@@ -38,6 +38,7 @@ function User(props) {
 
 
 
+
       }, []);
 
     const columns = [
@@ -191,30 +192,6 @@ function User(props) {
     }
 
 
-    let handleEventFilter = ()=>{
-        let value= document.querySelector('.eventFilter').options[document.querySelector('.eventFilter').selectedIndex].value
-
-        chooseEventApi({
-            eventFilter:value
-        }).then((res)=>{
-
-            setDataSource(res.map((v,i)=>{
-                return {
-                    id:i,
-                    name:`${v.first_name} ${v.last_name}`,
-                    organization:v.organization,
-                    email:v.email,
-                    identity:v.role,
-                    year:v.year,
-                    _id:v._id
-                }
-            })); 
-           
-            
-        })
-        
-    }
-
     
 
     return (
@@ -239,21 +216,6 @@ function User(props) {
             <option value="2020 orsie">2020 ORSIE</option>
             <option value="2019 orsie">2019 ORSIE</option>
             <option value="2018 orsie">2018 ORSIE</option>
-        </select>
-
-        <select className="eventFilter" onChange={handleEventFilter}>
-            <option value="">-Event Filter-</option>
-            <option value="1">Experience Student Entrepreneurship</option>
-            <option value="2">Seed to Celebration</option>
-            <option value="3">Partnerships for Social Innovation</option>
-            <option value="4">Health Technology and Innovation</option>
-            <option value="5">Mixed Reality</option>
-            <option value="6">Experience Autonomous Vehicles</option>
-            <option value="7">Research and Innovation in AI and Cybersecurity</option>
-            <option value="8">Makerspace Magic</option>
-            <option value="9">The 10-year Journey of Innovation</option>
-            <option value="10">Student Innovations</option>
-            
         </select>
     
 
