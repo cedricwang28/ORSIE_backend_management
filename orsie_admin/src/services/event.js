@@ -44,3 +44,8 @@ export function modifyOne(id, data) {
 export function delOne(id) {
   return del(`/api/events/${id}`);
 }
+
+
+export function chooseEventApi(data) {
+  return post("/api/chooseEvent", data);
+}

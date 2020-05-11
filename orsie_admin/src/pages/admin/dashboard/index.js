@@ -8,6 +8,7 @@ import {Switch,Route,Redirect} from "react-router-dom";
 import User from '../user'
 import Event from '../event'
 import AddEvent from '../addevent'
+import EventAttendee from '../eventAttendee'
 import { isLogined } from "../../../utils/auth";
 import { clearToken } from "../../../utils/auth";
 
@@ -81,6 +82,7 @@ function Dashboard(props) {
                     <Route path="/admin/user" component={User} />
                     <Route path="/admin/event" component={Event} />
                     <Route path="/admin/addevent" component={AddEvent} />
+                    <Route path="/admin/eventAttendee" component={EventAttendee} />
                     <Redirect to="/admin/user" />
         
                 </Switch>

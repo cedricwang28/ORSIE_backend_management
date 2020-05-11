@@ -71,6 +71,13 @@ function Event(props) {
                     }}>
                         <Button type="danger" style={{marginLeft:"5px"}} size="small">Delete</Button>
                     </Popconfirm>
+
+                    <Button onClick={() => props.history.push({
+                        pathname: "/admin/eventAttendee",
+                        query: {name:record.name,zone:record.zone}
+                    })}
+                     type="solid" size="small" style={{marginLeft:"5px"}}>Attendees</Button>
+
                 </div>
             )
         }
