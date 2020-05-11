@@ -1,5 +1,7 @@
 /*****************  SEARCH PAGE SCRIPTS  *********************/
 
+let rooturl = 'https://orsie.herokuapp.com'
+
 let nameBar = document.querySelector("#userNameBar");
 let nameInitials = document.querySelector("#userInitials");
 
@@ -11,6 +13,8 @@ const searchResults = document.querySelector("#search-results");
 const messageBox = document.querySelector("#message-box")
 const emailInput = document.querySelector("#confirm-email-input");
 const signInButton = document.querySelector("#sign-in-button");
+
+
 
 // variables to store sign in info
 let idClicked = "";
@@ -157,12 +161,11 @@ searchForm.addEventListener("submit", (e) => {
 // function to handle search and fetch data
 function search(searchData) {
 	// set service URL
-	let url = "http://localhost:5000/api/login";
+	let url = `${rooturl}/api/login`;
 	let searchText = document.querySelector('#search-input').value.toLowerCase();
 	const words = searchText.split(' ');
 	let firstName = words[0]
 	let lastName = words[1]
-	console.log(firstName,lastName);
 	
 	
 	let searchMsg = "";
@@ -268,6 +271,7 @@ signInButton.addEventListener("click", function () {
 			localStorage.setItem("orsieEmail", emailInput.value);
 			showSpinner();
 			signIn(idClicked, nameToDisplay);
+			getData();
 		} else {
 			// show error if emails don't match
 			displayMsg = `<div id="error">
@@ -294,7 +298,7 @@ function signIn(id, name) {
 	let formData = new FormData();
 	formData.append('id', id);
 	formData.append('event_name', document.querySelector("#event_name").value);
-	let url = "http://localhost:5000/api/login";
+	let url = `${rooturl}/api/login`;
 
 	// fetching data from the database
 	fetch(url, {

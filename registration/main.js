@@ -7,6 +7,8 @@
 
 window.onload = function () {
 
+    let rooturl = 'https://orsie.herokuapp.com'
+
     // page elements
     let splashPage = document.querySelector('#splash');
     let formPage = document.querySelector('#registration-page');
@@ -192,7 +194,7 @@ window.onload = function () {
         spinner.style.display = "block";
 
         // sending/fetching data from the server
-        let url = "http://localhost:5000/api/signup";
+        let url = `${rooturl}/api/signup`;
 
         let data = {
             first_name: document.querySelector('.name_first').value.trim().toLowerCase(),
