@@ -47,8 +47,8 @@ function AddEvent(props) {
             location:document.querySelector('.LocationInput').value,
             time:document.querySelector('.timeInput').value,
             discription:document.querySelector('.discInput').value,
-            schedule:document.querySelector('.scheduleInput').value,
-            popup:document.querySelector('.popupInput').value,
+            // schedule:document.querySelector('.scheduleInput').value,
+            // popup:document.querySelector('.popupInput').value,
             year:'2020 orsie'
         }
         if(location.query.type == 'add'){
@@ -118,12 +118,7 @@ function AddEvent(props) {
           <Form.Item label="Description">
             <Input.TextArea  className="discInput" value={formData.discription} onChange={e => setFormData({...formData,discription:e.target.value})}/>
           </Form.Item>
-          <Form.Item label="Schedule">
-            <Input.TextArea  className="scheduleInput" value={formData.schedule} onChange={e => setFormData({...formData,schedule:e.target.value})}/>
-          </Form.Item>
-          <Form.Item label="PopUps">
-            <Input.TextArea  className="popupInput" value={formData.popup} onChange={e => setFormData({...formData,popup:e.target.value})}/>
-          </Form.Item>
+          
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button type="primary" htmlType="submit">
               Submit

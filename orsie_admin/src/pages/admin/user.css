@@ -45,13 +45,13 @@ h3{
     margin-bottom: 5px;
 }
 
-.roleFilter, .yearFilter{
-    width: 150px;
+.roleFilter, .yearFilter, .eventFilter{
+    width: 120px;
     margin-left: 20px;
 }
 
 .selectYear{
-    width: 180px;
+    width: 120px;
     margin-left: 50px;
     transform: translate(0,-5px);
 }

@@ -107,9 +107,6 @@ router.delete('/users/:id', (req, res, next) => {
 });
 
 
-router.get('/download', function (req, res, next) {
-
-});
 
 router.post('/search', function (req, res, next) {
 
@@ -137,7 +134,7 @@ router.post('/search', function (req, res, next) {
 
 router.post('/filter', function (req, res, next) {
 
-    const {idFilter, yearFilter } = req.body;
+    const {idFilter, yearFilter} = req.body;
 
     if(idFilter=='' && yearFilter==''){
         SignUp.find().then((data)=>{
@@ -159,6 +156,18 @@ router.post('/filter', function (req, res, next) {
     
     
 });
+
+router.post('/chooseEvent', function (req, res, next) {
+
+    const {eventFilter} = req.body;
+    SignUp.find({attend: { $eq: eventFilter }}).then((data)=>{
+        res.send(data);
+    })
+    
+    
+    
+});
+
 
 router.post('/year', function (req, res, next) {
 
@@ -184,6 +193,25 @@ router.post('/event', (req, res, next) => {
     })
     
 });
+
+
+router.post('/addSchedule', (req, res, next) => {
+    let {zone, data} = req.body
+    // Event.update({zone:zone},{$set:{
+    //     schedule:data
+    // }}).then((data)=>{
+    //     res.send(data)
+    // })
+
+    Event.update({zone:zone},{$set:{
+        popup:data
+    }}).then((data)=>{
+        res.send(data)
+    })
+    
+});
+
+
 
 router.get('/events', (req, res, next) => {
     Event.find().then((data)=>{

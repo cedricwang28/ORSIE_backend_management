@@ -22,6 +22,10 @@ export function filterApi(data) {
     return post("/api/filter", data);
 }
 
+export function chooseEventApi(data) {
+  return post("/api/chooseEvent", data);
+}
+
 /**
  * @param {*} data
  */
