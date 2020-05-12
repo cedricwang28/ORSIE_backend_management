@@ -1,5 +1,6 @@
 {
   "name": "orsie_admin",
+  "homepage":"http://orsieadmin.cedricwang.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

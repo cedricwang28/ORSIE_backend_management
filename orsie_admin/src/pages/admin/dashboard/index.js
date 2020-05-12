@@ -2,8 +2,8 @@ import React from 'react'
 import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import './dashboard.css'
-import { Layout, Menu, Dropdown, Avatar,Button} from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined,DownOutlined } from '@ant-design/icons';
+import { Layout, Menu, Dropdown, Avatar} from 'antd';
+import { UserOutlined,  NotificationOutlined,DownOutlined } from '@ant-design/icons';
 import {Switch,Route,Redirect} from "react-router-dom";
 import User from '../user'
 import Event from '../event'
@@ -79,10 +79,10 @@ function Dashboard(props) {
             >
                 <Switch>
         
-                    <Route path="/admin/user" component={User} />
-                    <Route path="/admin/event" component={Event} />
-                    <Route path="/admin/addevent" component={AddEvent} />
-                    <Route path="/admin/eventAttendee" component={EventAttendee} />
+                    <Route path="/admin/user" exact component={User} />
+                    <Route path="/admin/event" exact component={Event} />
+                    <Route path="/admin/addevent" exact component={AddEvent} />
+                    <Route path="/admin/eventAttendee" exact component={EventAttendee} />
                     <Redirect to="/admin/user" />
         
                 </Switch>

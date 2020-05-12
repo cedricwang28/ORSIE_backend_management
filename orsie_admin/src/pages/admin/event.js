@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from "react";
-import { Card, Table, Button, Popconfirm } from "antd";
+import { Table, Button, Popconfirm } from "antd";
 import './user.css'
 import { listApi,delOne,selectYearApi } from "../../services/event";
 
@@ -22,7 +22,6 @@ function Event(props) {
                     location:v.location,
                     time:v.time,
                     year:v.year,
-                    schedule:v.schedule,
                     discription:v.discription,
                     _id:v._id
                 }
@@ -101,7 +100,6 @@ function Event(props) {
                     location:v.location,
                     time:v.time,
                     year:v.year,
-                    schedule:v.schedule,
                     discription:v.discription,
                     _id:v._id
                 }
@@ -116,18 +114,7 @@ function Event(props) {
 
     return (
     
-    // <Card title="Events list" className="card" extra={
-    //     <Button
-    //       type="primary" className="addBtn"
-    //       size="small"
-    //       onClick={() => props.history.push({
-    //         pathname: "/admin/addevent",
-    //         query: {type: "add", id:''}
-    //     })}
-    //     >
-    //       Add New
-    //     </Button>
-    //   }>
+    
     <>
         <h3>Events List</h3>
         <select className="selectYear"  onChange={handleYearFilter}>

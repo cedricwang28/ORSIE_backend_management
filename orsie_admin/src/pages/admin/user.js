@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
-import { Card, Table, Button, Popconfirm, Input } from "antd";
+import { Table, Button, Popconfirm, Input } from "antd";
 import './user.css'
-import { listApi,delOne,downloadApi, searchApi, filterApi,chooseEventApi } from "../../services/user";
+import { listApi,delOne,searchApi, filterApi} from "../../services/user";
 import { DownloadOutlined} from '@ant-design/icons';
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
