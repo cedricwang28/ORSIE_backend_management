@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import "antd/dist/antd.css";
-import {BrowserRouter as Router, Switch,Route,Redirect} from "react-router-dom";
+import {HashRouter as Router, Switch,Route,Redirect} from "react-router-dom";
 import Login from "./pages/Login"
 import Dashboard from "./pages/admin/dashboard"
 
