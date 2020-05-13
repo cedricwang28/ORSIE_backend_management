@@ -1,15 +1,19 @@
 let express = require('express');
+let nodemailer = require('nodemailer');
 let router = express.Router();
 let SignUp = require('../models/signup.js');
 let Admin = require('../models/admin.js');
 let Event = require('../models/event.js');
+let content = require('../email.js');
+require('dotenv').config();
 
-let fs = require('fs')
+
 
 
 
 router.post('/signup', (req,res,next)=>{
-    const { email } = req.body;
+    const { email,full_name} = req.body;
+
     SignUp.find({email:email}).then((item)=>{
         if(item.length>=1){
             res.json({
@@ -17,10 +21,42 @@ router.post('/signup', (req,res,next)=>{
             });
         }else{
             SignUp.create(req.body).then((data)=>{
+
                 res.json({
                     code:"success"
                 });
+
+                var transporter = nodemailer.createTransport({
+                    host: 'smtp.hostinger.com',
+                    port:587,
+                    secure:false,
+                    auth: {
+                      user: 'me@cedricwang.com',
+                      pass: 'wtw651125'
+                    },
+                    tls:{
+                        rejectUnauthorized:false
+                    }
+                  });
+                  
+                  var mailOptions = {
+                    from: 'me@cedricwang.com',
+                    to: email,
+                    subject: 'Sending Email using Node.js',
+                    html: content.template
+                  };
+                  
+                  transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                        res.send(error);
+                    } else {
+                      res.send('Email sent: ' + info.response);
+                    }
+                  });
+
+        
             }); 
+
         }
         
     }).catch(()=>{

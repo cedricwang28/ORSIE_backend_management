@@ -101,7 +101,7 @@ function User(props) {
         doc.setFont('Helvetica')
         doc.setFontType('bold')
         doc.setFontSize('25')
-        doc.text(75,22,'Attendant List')
+        doc.text(75,22,'Attendee List')
 
         let tableBody=[];
         dataSource.forEach((item,index)=>{
@@ -197,7 +197,7 @@ function User(props) {
     return (
         
     <>  
-        <h3>User List</h3>
+        <h3>Attendee List</h3>
         <Button type="primary" shape="round" icon={<DownloadOutlined />} className="download report" onClick={handleDownload}>
           Report
         </Button>

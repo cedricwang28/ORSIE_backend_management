@@ -7,7 +7,7 @@
 
 window.onload = function () {
 
-    let rooturl = 'https://orsie.herokuapp.com'
+    let rooturl = 'http://localhost:5000'
 
     // page elements
     let splashPage = document.querySelector('#splash');
@@ -242,7 +242,7 @@ window.onload = function () {
                         backgroundColor: "#D33222",
                         onComplete: function () {
                             // spinner.style.display = "none";
-                            registerText.innerHTML = `You have already registered for this event.`;
+                            registerText.innerHTML = `Your Email is already registered for this event.`;
                             spinner.style.display = "none";
                             registerText.style.display = "block";
                         }

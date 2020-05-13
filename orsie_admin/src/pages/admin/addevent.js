@@ -83,7 +83,7 @@ function AddEvent(props) {
       };
     
       return (
-        <Card title="Add Event"  extra={
+        <Card title="Add/Edit Event"  extra={
             <Button
               type="primary" 
               size="middle"

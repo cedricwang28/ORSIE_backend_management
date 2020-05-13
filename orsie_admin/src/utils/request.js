@@ -2,7 +2,8 @@ import axios from "axios";
 import { getToken } from "./auth.js";
 
 const instance = axios.create({
-  baseURL: "https://orsie.herokuapp.com",
+  // baseURL: "https://orsie.herokuapp.com",
+  baseURL: "http://localhost:5000",
   timeout: 5000
 });
 

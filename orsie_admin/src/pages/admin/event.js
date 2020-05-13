@@ -116,7 +116,7 @@ function Event(props) {
     
     
     <>
-        <h3>Events List</h3>
+        <h3>Workshops List</h3>
         <select className="selectYear"  onChange={handleYearFilter}>
             <option value="">--Select Year--</option>
             <option value="2020 orsie">2020 ORSIE</option>

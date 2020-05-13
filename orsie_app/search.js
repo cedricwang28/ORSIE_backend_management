@@ -204,7 +204,7 @@ function search(searchData) {
 						<p>No results found. Make sure you entered your name correctly. If you did not register for the event, you can register now.</p>
 					</div>
 					<div id="register">
-						<a href="https://orsieevents.durhamcollege.ca" target="_blank">Register Here</a>
+						<a href="https://orsieevents.durhamcollege.ca/registration/" target="_blank">Register Here</a>
 					</div>
 					`;
 			}

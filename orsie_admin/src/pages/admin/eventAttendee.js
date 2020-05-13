@@ -88,7 +88,7 @@ function Attendee(props) {
         doc.setFontType('normal')
         doc.setFontSize('14')
 
-        doc.text(10,40,`Event: ${location.query.name}`)
+        doc.text(10,40,`Workshop: ${location.query.name}`)
 
         let tableBody=[];
         dataSource.forEach((item,index)=>{
