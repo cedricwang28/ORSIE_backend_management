@@ -265,15 +265,22 @@ router.post('/year', function (req, res, next) {
 router.post('/updateyear', function (req, res, next) {
 
     const {activeyear} = req.body;
-    Year.update({},{active:false}).then(()=>{
-        Year.findOneAndUpdate({year:activeyear}, {active:true}).then((data)=>{
+    Year.updateMany({},{$set:{active:false}}).then(()=>{
+        Year.findOneAndUpdate({year:activeyear}, {$set:{active:true}}).then((data)=>{
             res.json({
                 code: "success"
             });
         });
     })
+ 
+});
 
-    
+router.get('/activeyear', function (req, res, next) {
+
+    Year.find({active:true}).then((data)=>{
+        res.send(data);
+    })
+
 });
 
 

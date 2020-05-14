@@ -7,7 +7,16 @@
 
 window.onload = function () {
 
-    let rooturl = 'http://localhost:5000'
+    let rooturl = 'http://localhost:5000';
+    let activeYear = '';
+
+    fetch(`${rooturl}/api/activeyear`)
+    .then(response => response.json())
+    .then((res)=>{
+        
+        activeYear = res[0].year;
+        
+    });
 
     // page elements
     let splashPage = document.querySelector('#splash');
@@ -205,7 +214,7 @@ window.onload = function () {
             city: document.querySelector('.city').value.trim().toLowerCase(),
             province: document.querySelector('.province').value.trim().toLowerCase(),
             role: document.querySelector("input[type=radio]:checked").value.trim().toLowerCase(),
-            year: "2020 orsie"
+            year: activeYear
         }
         
         

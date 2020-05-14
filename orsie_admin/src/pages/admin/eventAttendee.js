@@ -103,7 +103,7 @@ function Attendee(props) {
             margin: { top: 50 }
         });
 
-        doc.save('event attendee.pdf')
+        doc.save('workshop attendee.pdf')
     }
 
     

@@ -37,6 +37,11 @@ export function updateYearApi(data) {
   return post("/api/updateyear", data);
 }
 
+export function getActiveApi() {
+  return get("/api/activeyear");
+}
+
+
 export function getYearsApi() {
   return get("/api/addyear");
 }

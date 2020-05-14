@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { Table, Button, Popconfirm,Input,message } from "antd";
 import './user.css'
-import { listApi,delOne,selectYearApi,addYearApi,getYearsApi,updateYearApi } from "../../services/event";
+import { listApi,delOne,selectYearApi,addYearApi,getYearsApi,updateYearApi,getActiveApi} from "../../services/event";
 
 const { Search } = Input;
 
@@ -37,13 +37,26 @@ function Event(props) {
 
                 document.querySelector('.activeYear').innerHTML += `<option value="${item.year}">${item.year}</option> `
             });
+
+            getActiveApi().then((res)=>{
+                console.log(res[0].year);
+                let theIndex;
+                document.querySelector('.activeYear').querySelectorAll('option').forEach((v,i)=>{
+                    if(v.value == res[0].year){
+                        theIndex = i;
+                        return;
+                    }
+                })
+                document.querySelector('.activeYear')[theIndex].selected = true;
+            });
+            
         })
     }
 
     useEffect(() => {
         loadData();
         loadYears();
-        // document.querySelector('.activeYear').options[2].selected = true;
+        
       }, []);
 
     const columns = [
