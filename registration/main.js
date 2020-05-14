@@ -7,7 +7,7 @@
 
 window.onload = function () {
 
-    let rooturl = 'https://orsie.herokuapp.com';
+    let rooturl = 'http://localhost:5000';
     let activeYear = '';
 
     fetch(`${rooturl}/api/activeyear`)

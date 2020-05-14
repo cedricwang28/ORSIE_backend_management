@@ -27,33 +27,33 @@ router.post('/signup', (req,res,next)=>{
                     code:"success"
                 });
 
-                var transporter = nodemailer.createTransport({
-                    host: 'smtp.hostinger.com',
-                    port:587,
-                    secure:false,
-                    auth: {
-                      user: 'me@cedricwang.com',
-                      pass: 'wtw651125'
-                    },
-                    tls:{
-                        rejectUnauthorized:false
-                    }
-                  });
+                // var transporter = nodemailer.createTransport({
+                //     host: 'smtp.hostinger.com',
+                //     port:587,
+                //     secure:false,
+                //     auth: {
+                //       user: 'me@cedricwang.com',
+                //       pass: 'wtw651125'
+                //     },
+                //     tls:{
+                //         rejectUnauthorized:false
+                //     }
+                //   });
                   
-                  var mailOptions = {
-                    from: 'me@cedricwang.com',
-                    to: email,
-                    subject: 'Durham College Research Day 2020',
-                    html: content.template
-                  };
+                //   var mailOptions = {
+                //     from: 'me@cedricwang.com',
+                //     to: email,
+                //     subject: 'Durham College Research Day 2020',
+                //     html: content.template
+                //   };
                   
-                  transporter.sendMail(mailOptions, function(error, info){
-                    if (error) {
-                        res.send(error);
-                    } else {
-                      res.send('Email sent: ' + info.response);
-                    }
-                  });
+                //   transporter.sendMail(mailOptions, function(error, info){
+                //     if (error) {
+                //         res.send(error);
+                //     } else {
+                //       res.send('Email sent: ' + info.response);
+                //     }
+                //   });
 
         
             }); 
@@ -112,7 +112,7 @@ router.post('/addyear', (req,res,next)=>{
 
 router.get('/login', (req,res)=>{
     
-    SignUp.find({first_name:req.query.first_name, last_name:req.query.last_name}).then((data)=>{
+    SignUp.find({ $or: [ {full_name: req.query.searchText }, { email: req.query.searchText } ] } ).then((data)=>{
         res.send(data);
     })
     

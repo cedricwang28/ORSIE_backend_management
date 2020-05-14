@@ -1,6 +1,6 @@
 /*****************  SEARCH PAGE SCRIPTS  *********************/
 
-let rooturl = 'https://orsie.herokuapp.com'
+let rooturl = 'http://localhost:5000'
 
 let nameBar = document.querySelector("#userNameBar");
 let nameInitials = document.querySelector("#userInitials");
@@ -162,10 +162,8 @@ searchForm.addEventListener("submit", (e) => {
 function search(searchData) {
 	// set service URL
 	let url = `${rooturl}/api/login`;
-	let searchText = document.querySelector('#search-input').value.toLowerCase();
-	const words = searchText.split(' ');
-	let firstName = words[0]
-	let lastName = words[1]
+	let searchText = document.querySelector('#search-input').value.trim().toLowerCase();
+	
 	
 	
 	let searchMsg = "";
@@ -173,7 +171,7 @@ function search(searchData) {
 	updateMessages(errorMsg);
 
 	// fetching data from the database
-	fetch(`${url}?first_name=${firstName}&last_name=${lastName}`)
+	fetch(`${url}?searchText=${searchText}`)
 		.then(response => response.json())
 		.then(contents => {
 					

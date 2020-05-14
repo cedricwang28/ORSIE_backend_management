@@ -5,7 +5,7 @@ let masterSchedule = [];
 //global variable to hold full schedule html
 let fullScheduleHTML;
 
-let url = 'https://orsie.herokuapp.com'
+let url = 'http://localhost:5000'
 
 function getData(){
     fetch(`${url}/api/events`)
