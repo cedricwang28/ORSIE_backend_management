@@ -33,6 +33,10 @@ export function addYearApi(data) {
   return post("/api/addyear", data);
 }
 
+export function updateYearApi(data) {
+  return post("/api/updateyear", data);
+}
+
 export function getYearsApi() {
   return get("/api/addyear");
 }

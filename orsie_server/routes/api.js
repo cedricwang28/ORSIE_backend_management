@@ -262,6 +262,21 @@ router.post('/year', function (req, res, next) {
     
 });
 
+router.post('/updateyear', function (req, res, next) {
+
+    const {activeyear} = req.body;
+    Year.update({},{active:false}).then(()=>{
+        Year.findOneAndUpdate({year:activeyear}, {active:true}).then((data)=>{
+            res.json({
+                code: "success"
+            });
+        });
+    })
+
+    
+});
+
+
 router.post('/event', (req, res, next) => {
     Event.create(req.body).then((data)=>{
         res.json({

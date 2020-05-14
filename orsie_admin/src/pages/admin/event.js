@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { Table, Button, Popconfirm,Input,message } from "antd";
 import './user.css'
-import { listApi,delOne,selectYearApi,addYearApi,getYearsApi } from "../../services/event";
+import { listApi,delOne,selectYearApi,addYearApi,getYearsApi,updateYearApi } from "../../services/event";
 
 const { Search } = Input;
 
@@ -34,6 +34,8 @@ function Event(props) {
             
             res.forEach(item => {
                 document.querySelector('.selectYear').innerHTML += `<option value="${item.year}">${item.year}</option> `
+
+                document.querySelector('.activeYear').innerHTML += `<option value="${item.year}">${item.year}</option> `
             });
         })
     }
@@ -41,7 +43,7 @@ function Event(props) {
     useEffect(() => {
         loadData();
         loadYears();
-
+        // document.querySelector('.activeYear').options[2].selected = true;
       }, []);
 
     const columns = [
@@ -122,17 +124,19 @@ function Event(props) {
     let handleAddEvent = (value)=>{
         let newvalue = value.trim().toLowerCase();
         addYearApi({
-            year:newvalue
+            year:newvalue,
+            active:false
         }).then((res)=>{
 
-            if(res.code == "success"){
+            if(res.code === "success"){
                 message.success("New event is added !");  
                 document.querySelector('.selectYear').innerHTML += `<option value="${newvalue}">${newvalue}</option> `
+                document.querySelector('.activeYear').innerHTML += `<option value="${newvalue}">${newvalue}</option> `
             }
-            if(res.code == "taken"){
+            if(res.code === "taken"){
                 message.info("The event already exists !");   
             }
-            if(res.code == "error"){
+            if(res.code === "error"){
                 message.info("Something went wrong !");   
             }
             
@@ -142,7 +146,13 @@ function Event(props) {
 
 
     let handleActiveYear = ()=>{
-
+        let value= document.querySelector('.activeYear').options[document.querySelector('.activeYear').selectedIndex].value;
+        console.log(value);
+        
+        updateYearApi({activeyear:value}).then((res)=>{
+            console.log(res);
+            
+        })
     }
     
 
@@ -168,7 +178,7 @@ function Event(props) {
 
         Active Event:
         <select className="activeYear"  onChange={handleActiveYear}>
-            <option value="">--Event Filter --</option> 
+            
         </select>
 
       <Table

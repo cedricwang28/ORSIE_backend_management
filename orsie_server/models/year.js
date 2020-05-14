@@ -6,6 +6,9 @@ let yearSchema = new Schema({
     year:{
         type:String,
         required:true
+    },
+    active:{
+        type:Boolean
     }
 });
 
