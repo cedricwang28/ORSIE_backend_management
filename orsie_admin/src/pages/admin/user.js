@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 import { Table, Button, Popconfirm, Input } from "antd";
 import './user.css'
 import { listApi,delOne,searchApi, filterApi} from "../../services/user";
+import { getYearsApi } from "../../services/event";
 import { DownloadOutlined} from '@ant-design/icons';
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
@@ -36,7 +37,12 @@ function User(props) {
     useEffect(() => {
         loadData();
 
-
+        getYearsApi().then((res)=>{
+            
+            res.forEach(item => {
+                document.querySelector('.yearFilter').innerHTML += `<option value="${item.year}">${item.year}</option> `
+            });
+        })
 
 
       }, []);
@@ -69,7 +75,7 @@ function User(props) {
         dataIndex: "identity"
         
     },{
-        title: "Year",
+        title: "Event",
         dataIndex: "year"
         
     },{
@@ -212,10 +218,8 @@ function User(props) {
         </select>
 
         <select className="yearFilter" onChange={handleYearFilter}>
-            <option value="">-Year Filter-</option>
-            <option value="2020 orsie">2020 ORSIE</option>
-            <option value="2019 orsie">2019 ORSIE</option>
-            <option value="2018 orsie">2018 ORSIE</option>
+            <option value="">-Event Filter-</option>
+            
         </select>
     
 

@@ -29,6 +29,14 @@ export function selectYearApi(data) {
     return post("/api/year", data);
 }
 
+export function addYearApi(data) {
+  return post("/api/addyear", data);
+}
+
+export function getYearsApi() {
+  return get("/api/addyear");
+}
+
 /**
  * @param {*} id
  * @param {*} data

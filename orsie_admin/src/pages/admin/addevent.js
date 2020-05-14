@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
-import { Form, Input, InputNumber, Button, message, Card } from 'antd';
+import { Form, Input, InputNumber, Button, message, Card,Cascader } from 'antd';
 import './user.css'
-import { createApi,getOneById,modifyOne } from "../../services/event";
+import { createApi,getOneById,modifyOne,getYearsApi } from "../../services/event";
 
 
 const layout = {
@@ -12,22 +12,20 @@ const layout = {
       span: 16,
     },
   };
-  const validateMessages = {
-    required: '${label} is required!',
-    types: {
-      email: '${label} is not validate email!',
-      number: '${label} is not a validate number!',
-    },
-    number: {
-      range: '${label} must be between ${min} and ${max}',
-    },
-  };
-
+  
+let selectedYear;
+  
 
 function AddEvent(props) {
 
     let {location} = props.history;
     const [formData, setFormData] = useState({});
+    const [options, setOptions] = useState([
+      {
+        value: 'option1',
+        label: 'option1',
+      }
+    ]);
 
     useEffect(()=>{
         if(location.query.type == 'edit'){
@@ -36,6 +34,18 @@ function AddEvent(props) {
                 setFormData(res[0])
             })
         }
+
+
+        getYearsApi().then((res)=>{
+          setOptions(res.map((v,i)=>{
+            return {
+              value:v.year,
+              label:v.year
+            }
+        })); 
+          
+        })
+
     },[])
 
     const onFinish = () => {
@@ -49,7 +59,7 @@ function AddEvent(props) {
             discription:document.querySelector('.discInput').value,
             // schedule:document.querySelector('.scheduleInput').value,
             // popup:document.querySelector('.popupInput').value,
-            year:'2020 orsie'
+            year:selectedYear
         }
         if(location.query.type == 'add'){
             createApi(data).then((res)=>{
@@ -62,9 +72,7 @@ function AddEvent(props) {
                         name:'',
                         location:'',
                         time:'',
-                        discription:'',
-                        schedule:'',
-                        popup:''
+                        discription:''
                     })
                 }
             })
@@ -81,9 +89,19 @@ function AddEvent(props) {
 
         
       };
+
+
+
+      const onChooseYear = (value)=>{
+        
+        selectedYear = value[0]
+        
+      }
+
+
     
       return (
-        <Card title="Add/Edit Event"  extra={
+        <Card title="Add/Edit Workshop"  extra={
             <Button
               type="primary" 
               size="middle"
@@ -94,6 +112,11 @@ function AddEvent(props) {
           }>
 
         <Form {...layout} className="eventForm" name="nest-messages" onFinish={onFinish} >
+          <Form.Item
+            label="Select Event"
+          >
+            <Cascader options={options}  onChange={onChooseYear}  placeholder="Please select event" />
+          </Form.Item>
           <Form.Item
             label="Zone"
           >

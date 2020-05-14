@@ -1,9 +1,9 @@
 import React, {useState, useEffect } from "react";
-import { Table, Button, Popconfirm } from "antd";
+import { Table, Button, Popconfirm,Input,message } from "antd";
 import './user.css'
-import { listApi,delOne,selectYearApi } from "../../services/event";
+import { listApi,delOne,selectYearApi,addYearApi,getYearsApi } from "../../services/event";
 
-
+const { Search } = Input;
 
 
 function Event(props) {
@@ -29,8 +29,18 @@ function Event(props) {
         })
     }
 
+    let loadYears = ()=>{
+        getYearsApi().then((res)=>{
+            
+            res.forEach(item => {
+                document.querySelector('.selectYear').innerHTML += `<option value="${item.year}">${item.year}</option> `
+            });
+        })
+    }
+
     useEffect(() => {
-        loadData()
+        loadData();
+        loadYears();
 
       }, []);
 
@@ -52,7 +62,7 @@ function Event(props) {
         dataIndex: "time"
         
     },{
-        title: "Year",
+        title: "Event",
         dataIndex: "year"
         
     },{
@@ -104,12 +114,36 @@ function Event(props) {
                     _id:v._id
                 }
             })); 
-           
+        })
+        
+    }
+
+
+    let handleAddEvent = (value)=>{
+        let newvalue = value.trim().toLowerCase();
+        addYearApi({
+            year:newvalue
+        }).then((res)=>{
+
+            if(res.code == "success"){
+                message.success("New event is added !");  
+                document.querySelector('.selectYear').innerHTML += `<option value="${newvalue}">${newvalue}</option> `
+            }
+            if(res.code == "taken"){
+                message.info("The event already exists !");   
+            }
+            if(res.code == "error"){
+                message.info("Something went wrong !");   
+            }
             
         })
         
     }
 
+
+    let handleActiveYear = ()=>{
+
+    }
     
 
     return (
@@ -117,18 +151,25 @@ function Event(props) {
     
     <>
         <h3>Workshops List</h3>
+
+        <Search className="addyear" placeholder="input new event name" onSearch={handleAddEvent}
+         enterButton="Add Event" style={{ width: 270, marginLeft:"20px",marginBottom:"2vh"}}/>
+
         <select className="selectYear"  onChange={handleYearFilter}>
-            <option value="">--Select Year--</option>
-            <option value="2020 orsie">2020 ORSIE</option>
-            <option value="2019 orsie">2019 ORSIE</option>
-            <option value="2018 orsie">2018 ORSIE</option>
+            <option value="">--Event Filter --</option> 
         </select>
+
         <Button type="primary" shape="round" className="addBtn" onClick={() => props.history.push({
             pathname: "/admin/addevent",
             query: {type: "add", id:''}
         })}>
-          Add New
+          Add Workshop
         </Button>
+
+        Active Event:
+        <select className="activeYear"  onChange={handleActiveYear}>
+            <option value="">--Event Filter --</option> 
+        </select>
 
       <Table
         rowClassName="rows"

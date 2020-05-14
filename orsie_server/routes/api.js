@@ -4,6 +4,7 @@ let router = express.Router();
 let SignUp = require('../models/signup.js');
 let Admin = require('../models/admin.js');
 let Event = require('../models/event.js');
+let Year = require('../models/year.js')
 let content = require('../email.js');
 require('dotenv').config();
 
@@ -67,6 +68,46 @@ router.post('/signup', (req,res,next)=>{
 
     
 });
+
+
+router.get('/addyear', (req,res)=>{
+    
+    Year.find().then((data)=>{
+        res.send(data);
+           
+    });
+    
+});
+
+
+router.post('/addyear', (req,res,next)=>{
+    const {year} = req.body;
+
+    Year.find({year:year}).then((item)=>{
+        if(item.length>=1){
+            res.json({
+                code:"taken"
+            });
+        }else{
+            Year.create(req.body).then((data)=>{
+
+                res.json({
+                    code:"success"
+                });
+
+        
+            }); 
+
+        }
+        
+    }).catch(()=>{
+        res.json({
+            code:"error"
+        });
+    })
+    
+});
+
 
 
 router.get('/login', (req,res)=>{
