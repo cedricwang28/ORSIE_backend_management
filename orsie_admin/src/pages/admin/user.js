@@ -85,8 +85,9 @@ function User(props) {
                 <div>
                     
                     <Popconfirm title="Are you sure to delete?" onCancel={()=>{console.log('cancel')}} onConfirm={()=>{
-                        delOne(record._id);
-                        loadData();
+                        delOne(record._id).then(()=>{
+                            loadData();
+                        });
                     }}>
                         <Button type="danger" style={{marginLeft:"5px"}} size="small">Delete</Button>
                     </Popconfirm>

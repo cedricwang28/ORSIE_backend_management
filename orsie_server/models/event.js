@@ -8,28 +8,24 @@ let eventSchema = new Schema({
         required:true
     },
     mapId:{
-        type:String,
-        required:true
+        type:String
     },
     name:{
         type:String,
         required:true
     },
     location:{
-        type:String,
-        required:true
+        type:String
     },
     time:{
-        type:String,
-        required:true
+        type:String
     },
     year:{
         type:String,
         required:true
     },
     discription:{
-        type:String,
-        required:true
+        type:String
     },
     schedule:{
         type:Array

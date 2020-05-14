@@ -43,7 +43,7 @@ router.post('/signup', (req,res,next)=>{
                   var mailOptions = {
                     from: 'me@cedricwang.com',
                     to: email,
-                    subject: 'Sending Email using Node.js',
+                    subject: 'Durham College Research Day 2020',
                     html: content.template
                   };
                   
